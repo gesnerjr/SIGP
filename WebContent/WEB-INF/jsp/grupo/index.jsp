@@ -1,4 +1,12 @@
 <%@ include file="/header.jsp" %> 
+
+    <div id="side-contents" class="hidden">
+    </div>
+    
+    <div id="contents">
+        <h2 class="top">Header 2</h2>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <table>
 	<tr>
@@ -22,4 +30,10 @@
 
 <hr />
 <p><a href="/SIGP/"><fmt:message key="voltar_a_home" /></a></p>
+        
+    </div> <!-- id=contents -->
+
+
+
+
 <%@ include file="/footer.jsp" %> 

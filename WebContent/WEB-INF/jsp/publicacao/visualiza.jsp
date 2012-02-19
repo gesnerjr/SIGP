@@ -1,5 +1,13 @@
 <%@ include file="/header.jsp" %> 
 
+    <div id="side-contents" class="hidden">
+    </div>
+    
+    <div id="contents">
+        <h2 class="top">Header 2</h2>
+
+
+
 <p>
 	<b><fmt:message key="publicacao.publicacao" /></b> ${publicacao.titulo}
 </p>
@@ -36,5 +44,11 @@
 <p>
 	<a href="/SIGP/publicacao/"><fmt:message key="publicacao.voltar" /></a>
 </p>
+
+        
+    </div> <!-- id=contents -->
+
+
+
 
 <%@ include file="/footer.jsp" %> 

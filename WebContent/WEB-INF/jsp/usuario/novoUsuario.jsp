@@ -1,5 +1,13 @@
 <%@ include file="/header.jsp"%>
 
+    <div id="side-contents" class="hidden">
+    </div>
+    
+    <div id="contents">
+        <h2 class="top">Header 2</h2>
+
+
+
 <div id=cadastra>
 	<form action="salva" method="post">
 		<p>
@@ -27,5 +35,11 @@
 <%@ include file="/errors.jsp"%>
 
 <div id=erro></div>
+
+        
+    </div> <!-- id=contents -->
+
+
+
 
 <%@ include file="/footer.jsp"%>

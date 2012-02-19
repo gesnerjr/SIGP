@@ -1,5 +1,13 @@
 <%@ include file="/header.jsp" %> 
 
+    <div id="side-contents" class="hidden">
+    </div>
+    
+    <div id="contents">
+        <h2 class="top">Header 2</h2>
+
+
+
 <form method="post" action="/SIGP/publicacao/cria">
 	<table>
 		<tr>
@@ -40,5 +48,11 @@
 <p>
 	<a href="/SIGP/publicacao/"><fmt:message key="voltar" /></a>
 </p>
+
+        
+    </div> <!-- id=contents -->
+
+
+
 
 <%@ include file="/footer.jsp" %> 

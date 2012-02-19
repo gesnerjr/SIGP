@@ -1,5 +1,13 @@
 <%@ include file="/header.jsp" %> 
 
+    <div id="side-contents" class="hidden">
+    </div>
+    
+    <div id="contents">
+        <h2 class="top">Header 2</h2>
+
+
+
 <table>
 	<tr>
 		<th><fmt:message key="projeto.nome" /></th>
@@ -20,4 +28,10 @@
 
 <hr />
 <p><a href="/SIGP/"><fmt:message key="voltar_a_home" /></a></p>
+        
+    </div> <!-- id=contents -->
+
+
+
+
 <%@ include file="/footer.jsp" %> 
