@@ -4,24 +4,19 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">Header 2</h2>
+        <h2 class="top"><fmt:message key="header.publicacoes" /></h2>
 
-
-
-<table>
-	<tr>
-		<th><fmt:message key="publicacao.titulo" /></th>
-		<th><fmt:message key="publicacao.data" /></th>
-		<th><fmt:message key="publicacao.veiculo" /></th>
-	</tr>
+<ul>
 	<c:forEach items="${publicacoes}" var="publicacao">
-		<tr>
-			<td><a href="/SIGP/publicacao/ver/${publicacao.idPublicacao}">${publicacao.titulo}</a></td>
+		<li>
+		    <strong>"<a href="/SIGP/publicacao/ver/${publicacao.idPublicacao}">${publicacao.titulo}</a>"</strong>
+	    </li>
 <%-- 			<td>${publicacao.data}</td> --%>
 <%-- 			<td>${publicacao.veiculo}</td> --%>
-		</tr>
 	</c:forEach>
-</table>
+</ul>
+
+
 <p>
 	<a href="novo"><fmt:message key="novo" /></a>
 </p>

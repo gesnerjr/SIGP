@@ -9,10 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import sigp.src.Contribuinte;
-import sigp.src.Projeto;
-import sigp.src.Publicacao;
-import sigp.src.Veiculo;
+import sigp.src.component.Contribuinte;
+import sigp.src.component.Projeto;
+import sigp.src.component.Publicacao;
+import sigp.src.component.TipoVeiculo;
 
 import org.junit.After;
 import org.junit.Before;
@@ -45,7 +45,7 @@ public class PublicacaoTest {
     @Test
     public void deveriaDevolverVeiculo() {
 	assertEquals("Deveria devolver o Veiculo da Publicacao", "Journal",
-		publicacao.getVeiculo().getTipoVeiculo());
+		publicacao.getVeiculoTipo().getTipoVeiculo());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class PublicacaoTest {
 
 	publicacao
 		.setTitulo("Service-oriented middleware for the Future Internet: state of the art and research directions");
-	publicacao.setVeiculo(Veiculo.JOURNAL);
+	publicacao.setVeiculoTipo(TipoVeiculo.JOURNAL);
 	publicacao.setData(formatador.parse("25/05/2011"));
 
 	contribuintes = new ArrayList<Contribuinte>(2);

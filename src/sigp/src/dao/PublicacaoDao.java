@@ -1,6 +1,7 @@
 package sigp.src.dao;
 
-import sigp.src.Publicacao;
+import sigp.src.component.Publicacao;
+
 import java.util.List;
 
 import org.hibernate.Session;

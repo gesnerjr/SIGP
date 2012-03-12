@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.mapping.Array;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,11 +16,12 @@ import org.junit.Test;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 
-import sigp.src.Contribuinte;
-import sigp.src.Projeto;
-import sigp.src.Publicacao;
-import sigp.src.Veiculo;
-import sigp.src.controllers.PublicacaoController;
+import sigp.src.component.Contribuinte;
+import sigp.src.component.Projeto;
+import sigp.src.component.Publicacao;
+import sigp.src.component.TipoVeiculo;
+import sigp.src.controller.PublicacaoController;
+import sigp.src.dao.ContribuinteDao;
 import sigp.src.dao.ProjetoDao;
 import sigp.src.dao.PublicacaoDao;
 
@@ -29,6 +31,7 @@ public class PublicacaoControllerTest {
     Result result;
     PublicacaoDao dao;
     ProjetoDao pdao;
+    ContribuinteDao cdao;
     SimpleDateFormat formatador = new SimpleDateFormat("dd/mm/yyyy");
     List<Publicacao> publicacoes;
     private Validator validator;
@@ -39,7 +42,8 @@ public class PublicacaoControllerTest {
         dao = mock(PublicacaoDao.class);
         validator = mock(Validator.class);
         pdao = mock(ProjetoDao.class);
-        controller = new PublicacaoController(result, validator, dao, pdao);
+        cdao = mock(ContribuinteDao.class);
+        controller = new PublicacaoController(result, validator, dao, pdao, cdao);
 
         PublicacaoController controlmock = mock(PublicacaoController.class);
         when(result.redirectTo(PublicacaoController.class)).thenReturn(
@@ -55,7 +59,7 @@ public class PublicacaoControllerTest {
             Publicacao publicacao = new Publicacao();
             publicacao.setIdPublicacao(1L);
             publicacao.setTitulo("Artigo 1");
-            publicacao.setVeiculo(Veiculo.JOURNAL);
+            publicacao.setVeiculoTipo(TipoVeiculo.JOURNAL);
 
             List<Contribuinte> contribuintes = new ArrayList<Contribuinte>();
             Contribuinte contribuinte1 = mock(Contribuinte.class);
@@ -79,7 +83,7 @@ public class PublicacaoControllerTest {
             Publicacao publicacao = new Publicacao();
             publicacao.setIdPublicacao(2L);
             publicacao.setTitulo("Artigo 2");
-            publicacao.setVeiculo(Veiculo.CONFERENCIA);
+            publicacao.setVeiculoTipo(TipoVeiculo.CONFERENCIA);
 
             List<Contribuinte> contribuintes = new ArrayList<Contribuinte>();
             Contribuinte contribuinte1 = mock(Contribuinte.class);
@@ -119,13 +123,13 @@ public class PublicacaoControllerTest {
     @Test
     public void testNovo_Form() {
         controller.novo_form();
-        verify(result).include("veiculos", Veiculo.values());
+        verify(result).include("veiculos", TipoVeiculo.values());
     }
 
     @Test
     public void testCria() {
         Publicacao p = publicacoes.get(0);
-        controller.cria(p, new ArrayList<Long>());
+        controller.cria(p, new ArrayList<Long>(), new ArrayList<Long>());
         verify(dao).save(p);
     }
 
