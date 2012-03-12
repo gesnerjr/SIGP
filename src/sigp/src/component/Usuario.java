@@ -1,4 +1,4 @@
-package sigp.src;
+package sigp.src.component;
 
 import java.io.File;
 
@@ -9,19 +9,18 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
-import javax.persistence.UniqueConstraint;
-
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 import sigp.src.hash.PasswordCodificator;
-
 import br.com.caelum.vraptor.Resource;
 
 @Entity
@@ -30,7 +29,11 @@ import br.com.caelum.vraptor.Resource;
 	uniqueConstraints = 
 		{@UniqueConstraint(columnNames = {"USUARIO_LOGIN"})})
 public class Usuario {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUsuario;
+	
 	private File avatar;
 	
 	@NotNull(message = "Usuário precisa ter um tipo definido.")
@@ -56,6 +59,7 @@ public class Usuario {
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
+	
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
 	}
