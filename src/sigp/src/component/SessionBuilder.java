@@ -1,4 +1,4 @@
-package sigp.src;
+package sigp.src.component;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.ComponentFactory;

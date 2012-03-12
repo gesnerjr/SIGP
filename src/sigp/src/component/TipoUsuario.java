@@ -1,4 +1,4 @@
-package sigp.src;
+package sigp.src.component;
 
 public enum TipoUsuario {
 	USUARIO("Usuario"), ADMINISTRADOR("Administrador");

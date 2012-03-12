@@ -14,20 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package sigp.src.controllers;
+package sigp.src.controller;
 
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 
 @Resource
-public class IndexController {
+public class IndexController implements IHeaderController {
+	private static final String HEADER = "index";
 	private final Result result;
+	
 	public IndexController(Result result) {
 		this.result = result;
 	}
 
 	@Path("/")
 	public void index() {
+	}
+
+	public String getHeader() {
+		return IndexController.HEADER;
 	}
 }

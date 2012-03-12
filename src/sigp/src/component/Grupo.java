@@ -1,4 +1,4 @@
-package sigp.src;
+package sigp.src.component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class Grupo {
 	@NotEmpty(message = "O campo \"nome\" não deve ficar vazio.")
 	private String nome;
 
-	private Grupo responsavel;
+	private Contribuinte responsavel;
 
 	private List<LinhaPesquisa> pesquisas = new ArrayList<LinhaPesquisa>();
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
@@ -60,11 +60,11 @@ public class Grupo {
 
 	@ManyToOne
 	@JoinColumn(name = "RESPONSAVEL_ID")
-	public Grupo getResponsavel() {
+	public Contribuinte getResponsavel() {
 		return responsavel;
 	}
 
-	public void setResponsavel(Grupo responsavel) {
+	public void setResponsavel(Contribuinte responsavel) {
 		this.responsavel = responsavel;
 	}
 

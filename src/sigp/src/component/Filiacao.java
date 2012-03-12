@@ -1,4 +1,4 @@
-package sigp.src;
+package sigp.src.component;
 
 import java.util.Date;
 

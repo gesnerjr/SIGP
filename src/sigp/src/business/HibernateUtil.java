@@ -1,4 +1,4 @@
-package sigp.src;
+package sigp.src.business;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

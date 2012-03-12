@@ -6,8 +6,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import sigp.src.Contribuinte;
-import sigp.src.Usuario;
+import sigp.src.component.Contribuinte;
+import sigp.src.component.Usuario;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.RequestScoped;

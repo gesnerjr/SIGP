@@ -1,6 +1,7 @@
 package sigp.src.dao;
 
-import sigp.src.Grupo;
+import sigp.src.component.Grupo;
+
 import java.util.List;
 
 import org.hibernate.Session;

@@ -1,6 +1,6 @@
-package sigp.src.controllers;
+package sigp.src.controller;
 
-import sigp.src.LinguaSessao;
+import sigp.src.component.LinguaSessao;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 

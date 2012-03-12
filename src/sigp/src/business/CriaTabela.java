@@ -1,10 +1,17 @@
-package sigp.src;
+package sigp.src.business;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
+
+import sigp.src.component.Disciplina;
+import sigp.src.component.Filiacao;
+import sigp.src.component.Grupo;
+import sigp.src.component.Projeto;
+import sigp.src.component.Publicacao;
+import sigp.src.component.TipoVeiculo;
 
 public class CriaTabela {
 	public static void init() {
@@ -14,7 +21,7 @@ public class CriaTabela {
 		configuration.addAnnotatedClass(Filiacao.class);
 		configuration.addAnnotatedClass(Publicacao.class);
 		configuration.addAnnotatedClass(Projeto.class);
-		configuration.addAnnotatedClass(Veiculo.class);
+		configuration.addAnnotatedClass(TipoVeiculo.class);
 
 		configuration.configure();
 

@@ -1,18 +1,21 @@
-package sigp.src.controllers;
+package sigp.src.controller;
 
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 import br.com.caelum.vraptor.validator.ValidationMessage;
-import sigp.src.Contribuinte;
-import sigp.src.Grupo;
+import sigp.src.annotations.Restricted;
+import sigp.src.component.Contribuinte;
+import sigp.src.component.Grupo;
+import sigp.src.component.Usuario;
 import sigp.src.dao.ContribuinteDao;
 import sigp.src.dao.UsuarioDao;
-import sigp.src.Usuario;
 
 @Resource
-public class ContribuinteController {
+public class ContribuinteController implements IHeaderController{
+	private static final String HEADER = "membro";
+	
     private final Result result;
     private final ContribuinteDao dao;
     private final UsuarioDao udao;
@@ -25,18 +28,24 @@ public class ContribuinteController {
         this.dao = dao;
         this.udao = udao;
     }
+    
+	public String getHeader() {
+		return ContribuinteController.HEADER;
+	}
 
     @Path("/contribuinte/")
     public void index() {
         result.include("contribuintes", dao.list());
     }
 
+    @Restricted
     @Path("/contribuinte/novo")
     public void novo_form() {
         result.include("contribuintes", dao.list());
         result.include("usuarios", udao.list());
     }
 
+    @Restricted
     @Path("/contribuinte/cria")
     public void cria(final Contribuinte contribuinte, final Long idUsuario) {
         validator.validate(contribuinte);
@@ -45,6 +54,7 @@ public class ContribuinteController {
             validator.add(new ValidationMessage("usuário",
                     "não existe"));
         }
+
         
         validator.onErrorForwardTo(this).novo_form();
         contribuinte.setUsuario(user);
@@ -63,6 +73,7 @@ public class ContribuinteController {
             result.include("contribuinte", contribuinte);
     }
 
+    @Restricted
     @Path("/contribuinte/alterar/{id}")
     public void altera_form(Long id) {
         Contribuinte contribuinte = dao.getContribuinte(id);
@@ -74,6 +85,7 @@ public class ContribuinteController {
         }
     }
 
+    @Restricted
     @Path("/contribuinte/altera")
     public void altera(final Contribuinte contribuinte, final Long idUsuario) {
         validator.validate(contribuinte);
@@ -91,6 +103,7 @@ public class ContribuinteController {
         result.redirectTo(ContribuinteController.class).index();
     }
 
+    @Restricted
     @Path("/contribuinte/apagar/{id}")
     public void remove(Long id) {
         Contribuinte contribuinte = dao.getContribuinte(id);
@@ -98,4 +111,5 @@ public class ContribuinteController {
             dao.delete(contribuinte);
         result.redirectTo(ContribuinteController.class).index();
     }
+
 }

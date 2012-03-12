@@ -1,4 +1,4 @@
-package sigp.src;
+package sigp.src.component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +28,11 @@ public class Contribuinte {
 	
 	@NotEmpty(message = "Contribuinte precisa ter um nome.")
 	private String nome;
+	private String nomeCitacao;
+	
 	
 	private Usuario usuario;
+	
 	private List<Publicacao> publicacoes = new ArrayList<Publicacao>();
 	private List<Filiacao> filiacoes = new ArrayList<Filiacao>();
 	private List<Participacao> participacoes = new ArrayList<Participacao>();
@@ -44,7 +47,7 @@ public class Contribuinte {
 		this.filiacoes = filiacoes;
 	}
 
-	@OneToMany(mappedBy = "contribuinte")
+	@OneToMany(mappedBy = "contribuinte",  cascade = CascadeType.ALL)
 	public List<Participacao> getParticipacoes() {
 		return participacoes;
 	}
@@ -53,7 +56,7 @@ public class Contribuinte {
 		this.participacoes = participacoes;
 	}
 
-	@OneToMany(mappedBy = "contribuinte")
+	@OneToMany(mappedBy = "contribuinte",  cascade = CascadeType.ALL)
 	public List<RelacaoPesquisa> getRelacoes() {
 		return relacoes;
 	}
@@ -120,6 +123,15 @@ public class Contribuinte {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	@Column(name = "CONTRIBUINTE_NOMECITE", nullable = false, length = 255)
+	public String getNomeCitacao() {
+		return nomeCitacao;
+	}
+
+	public void setNomeCitacao(String nomeCitacao) {
+		this.nomeCitacao = nomeCitacao;
 	}
 
 }

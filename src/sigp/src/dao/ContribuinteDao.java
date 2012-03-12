@@ -1,6 +1,7 @@
 package sigp.src.dao;
 
-import sigp.src.Contribuinte;
+import sigp.src.component.Contribuinte;
+
 import java.util.List;
 
 import org.hibernate.Session;
