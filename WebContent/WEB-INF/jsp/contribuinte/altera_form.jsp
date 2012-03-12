@@ -4,7 +4,7 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">Header 2</h2>
+        <h2 class="top">${contribuinte.nome}: Alterar</h2>
 
 
 
@@ -15,13 +15,21 @@
 			<td><input type="text" name="contribuinte.nome" value="${contribuinte.nome}" />
 			</td>
 		</tr>
+		
+		<tr>
+			<td><fmt:message key="contribuinte.nomecitacao" /></td>
+			<td><input type="text" name="contribuinte.nomeCitacao" value="${contribuinte.nomeCitacao}" /></td>
+		</tr>
 
 		<tr>
 			<td><fmt:message key="contribuinte.usuariocorrespondente" /></td>
 			<td><select name="idUsuario">
 					<option value="0"><fmt:message key = "contribuinte.nenhum" /></option>
 					<c:forEach items="${usuarios}" var="usuario">
-						<option value="${usuario.idUsuario}">${usuario.login}</option>
+						<option value="${usuario.idUsuario}"  
+						<c:if test="${usuario.idUsuario == contribuinte.usuario.idUsuario}">
+							selected="selected"</c:if>
+						>${usuario.login}</option>
 					</c:forEach>
 			</select>
 			</td>

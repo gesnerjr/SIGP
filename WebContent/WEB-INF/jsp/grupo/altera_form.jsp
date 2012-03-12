@@ -4,7 +4,7 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">Header 2</h2>
+        <h2 class="top">${grupo.nome}</h2>
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -40,10 +40,20 @@ $(function(){
 		</tr>
 		<tr>
 			<td><fmt:message key="grupo.responsavel" /></td>
+			<%-- 
 			<td>
-				<input type="text" id="responsavelBusca" name="responsavel"
-					value="<c:if test="${grupo.responsavel != null}">${grupo.responsavel.nome}</c:if>">
+				<input type="text" id="responsavelBusca" name="responsavel" />
 			</td>
+			--%>
+			<td><select name="idResponsavel">
+					<option value="0"><fmt:message key="grupo.nenhum" /></option>
+					<c:forEach items="${todoscontribuintes}" var="contribuinte">
+						<option value="${contribuinte.idContribuinte}" 
+						<c:if test="${contribuinte.idContribuinte == grupo.responsavel.idContribuinte}">
+							selected="selected"</c:if>
+						>${contribuinte.nome}</option>
+					</c:forEach>
+			</select></td>
 		</tr>
 		<tr>
 			<td colspan="2">

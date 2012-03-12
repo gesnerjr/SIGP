@@ -4,7 +4,7 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">Header 2</h2>
+        <h2 class="top">Contribuintes</h2>
 
 
 
@@ -13,6 +13,11 @@
 		<tr>
 			<td><fmt:message key="contribuinte.nome" /></td>
 			<td><input type="text" name="contribuinte.nome" /></td>
+		</tr>
+		
+		<tr>
+			<td><fmt:message key="contribuinte.nomecitacao" /></td>
+			<td><input type="text" name="contribuinte.nomeCitacao" /></td>
 		</tr>
 
 		<tr>

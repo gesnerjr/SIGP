@@ -4,72 +4,62 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">Header 2</h2>
+        <h2 class="top">${contribuinte.nome}</h2>
 
+	<br /><br />
 
-
-<p>
-	<b>Contribuinte:</b> ${contribuinte.nome} (${contribuinte.usuario.login})
-</p>
-
-<!-- Projetos -->
-<table>
-	<tr>
-		<th><fmt:message key="contribuinte.projetosparticipou" /></th>
-	</tr>
-	<c:forEach items="${contribuinte.participacoes}" var="participacao">
-		<tr>
-			<td><a href="/SIGP/projeto/ver/${participacao.projeto.idProjeto}">${participacao.projeto.nome}</a>
-			</td>
-		</tr>
-	</c:forEach>
-</table>
-<!-- Publicacao -->
-<table>
-	<tr>
-		<th><fmt:message key="contribuinte.publicacoesfeitas" /></th>
-	</tr>
-	<c:forEach items="${contribuinte.publicacoes}" var="publicacao">
-		<tr>
-			<td><a href="/SIGP/publicacoes/ver/${publicacao.idPublicacao}">${publicacao.titulo}</a>
-			</td>
-		</tr>
-	</c:forEach>
-</table>
-<!-- Filiacoes -->
-<table>
-	<tr>
-		<th><fmt:message key="contribuintes.gruposfiliado" /></th>
-	</tr>
-	<c:forEach items="${contribuinte.filiacoes}" var="filiacao">
-		<tr>
-			<td><a href="/SIGP/grupo/ver/${filiacao.grupo.idGrupo}">${filiacao.grupo.nome}</a>
-			</td>
-		</tr>
-	</c:forEach>
-</table>
-<!-- LinhaPesquisa -->
-<table>
-	<tr>
-		<th><fmt:message key="contribuinte.linhaspesquisou" /></th>
-	</tr>
-	<c:forEach items="${contribuinte.relacoes}" var="relacao">
-		<tr>
-			<td><a href="/SIGP/linhadepesquisa/ver/${relacao.linha.idPesquisa}">${relacao.linha.nome}</a>
-			</td>
-		</tr>
-	</c:forEach>
-</table>
-<!-- resto da pagina -->
-<p>
-	<a href="/SIGP/contribuinte/alterar/${contribuinte.idContribuinte}"><fmt:message key="alterar" /></a>
-	- <a href="/SIGP/contribuinte/apagar/${contribuinte.idContribuinte}"><fmt:message key="apagar" /></a>
-</p>
-
-<hr />
-<p>
-	<a href="/SIGP/contribuinte/"><fmt:message key="contribuinte.voltar" /></a>
-</p>
+	<!-- Projetos -->
+	<div>
+		<b><fmt:message key="contribuinte.projetosparticipou" /></b><br /><br />
+		<ul>
+		<c:forEach items="${contribuinte.participacoes}" var="participacao">
+			<li><a href="/SIGP/projeto/ver/${participacao.projeto.idProjeto}">${participacao.projeto.nome}</a></li>
+		</c:forEach>
+		</ul>
+	</div>
+	
+	<!-- Publicacao -->
+	<div>
+		<b><fmt:message key="contribuinte.publicacoesfeitas" /></b><br /><br />
+		<ul>
+		<c:forEach items="${contribuinte.publicacoes}" var="publicacao">
+			<li><a href="/SIGP/publicacoes/ver/${publicacao.idPublicacao}">${publicacao.titulo}</a></li>
+		</c:forEach>
+		</ul>
+	</div>
+	
+	<!-- Filiacoes -->
+	<div>
+		<b><fmt:message key="contribuinte.gruposfiliado" /></b><br /><br />
+		<ul>
+		<c:forEach items="${contribuinte.filiacoes}" var="filiacao">
+			<li><a href="/SIGP/grupo/ver/${filiacao.grupo.idGrupo}">${filiacao.grupo.nome}</a></li>
+		</c:forEach>
+		</ul>
+	</div>
+	
+	<!-- LinhaPesquisa -->
+	<div>
+		<b><fmt:message key="contribuinte.linhaspesquisou" /></b><br /><br />
+		<ul>
+		<c:forEach items="${contribuinte.relacoes}" var="relacao">
+			<li><a href="/SIGP/linhadepesquisa/ver/${relacao.linha.idPesquisa}">${relacao.linha.nome}</a></li>
+		</c:forEach>
+		</ul>
+	</div>
+	
+	<!-- resto da pagina -->
+	<br />
+	<br />
+	<p>
+		<a href="/SIGP/contribuinte/alterar/${contribuinte.idContribuinte}"><fmt:message key="alterar" /></a>
+		- <a href="/SIGP/contribuinte/apagar/${contribuinte.idContribuinte}"><fmt:message key="apagar" /></a>
+	</p>
+	
+	<hr />
+	<p>
+		<a href="/SIGP/contribuinte/"><fmt:message key="contribuinte.voltar" /></a>
+	</p>
 
         
     </div> <!-- id=contents -->
