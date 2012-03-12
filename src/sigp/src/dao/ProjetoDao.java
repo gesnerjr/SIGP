@@ -4,7 +4,7 @@ import br.com.caelum.vraptor.ioc.Component;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import sigp.src.Projeto;
+import sigp.src.component.Projeto;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class ProjetoDao {
 	}
 
 	public Projeto getProjeto(Long id) {
-		return (Projeto) this.session.load(Projeto.class, id);
+		return (Projeto) this.session.get(Projeto.class, id);
 	}
 	
 	@SuppressWarnings("unchecked")

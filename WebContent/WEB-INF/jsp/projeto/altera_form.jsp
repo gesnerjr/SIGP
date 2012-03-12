@@ -4,7 +4,7 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">Header 2</h2>
+        <h2 class="top">${projeto.nome}: Alterar</h2>
 
 
 
@@ -20,7 +20,7 @@
 		</tr>
 		<tr>
 			<td><fmt:message key="projeto.descricao" /></td>
-			<td><textarea name="projeto.descricao">${projeto.descricao}</textarea></td>
+			<td><textarea name="projeto.descricao" cols="80" rows="5">${projeto.descricao}</textarea></td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="hidden" name="projeto.idProjeto"

@@ -1,4 +1,4 @@
-package sigp.src;
+package sigp.src.component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -45,7 +46,7 @@ public class Projeto {
 	public void setContribuintes(List<Contribuinte> contribuintes) {
 		this.contribuintes = contribuintes;
 	}*/
-	@OneToMany(mappedBy = "projeto")
+	@OneToMany(mappedBy = "projeto",  cascade = CascadeType.ALL)
 	public List<Participacao> getParticipacoes() {
 		return participacoes;
 	}
@@ -54,7 +55,7 @@ public class Projeto {
 	}
 	
 
-	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "projetos")
+	@ManyToMany(mappedBy = "projetos")
 	public List<LinhaPesquisa> getLinhasDePesquisa() {
 		return linhasDePesquisa;
 	}
@@ -63,7 +64,6 @@ public class Projeto {
 	}
 	
 	
-
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "projetos")
 	public List<Publicacao> getPublicacoes() {
 		return publicacoes;
@@ -80,7 +80,8 @@ public class Projeto {
 		this.nome = nome;
 	}
 	
-	@Column(name = "PROJETO_DESCRICAO", nullable = false, length = 510)
+	@Lob
+	@Column(name = "PROJETO_DESCRICAO", nullable = false)
 	public String getDescricao() {
 		return descricao;
 	}

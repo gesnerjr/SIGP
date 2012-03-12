@@ -14,11 +14,11 @@ import org.junit.Test;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 
-import sigp.src.Filiacao;
-import sigp.src.LinhaPesquisa;
-import sigp.src.Projeto;
-import sigp.src.Publicacao;
-import sigp.src.controllers.ProjetoController;
+import sigp.src.component.Filiacao;
+import sigp.src.component.LinhaPesquisa;
+import sigp.src.component.Projeto;
+import sigp.src.component.Publicacao;
+import sigp.src.controller.ProjetoController;
 
 import sigp.src.dao.ProjetoDao;
 

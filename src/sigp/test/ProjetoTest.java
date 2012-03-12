@@ -12,9 +12,9 @@ import org.junit.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import sigp.src.Filiacao;
-import sigp.src.Projeto;
-import sigp.src.Publicacao;
+import sigp.src.component.Filiacao;
+import sigp.src.component.Projeto;
+import sigp.src.component.Publicacao;
 
 public class ProjetoTest {
 
