@@ -30,6 +30,7 @@
     
    	<link type="text/css" href="/SIGP/styles/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
 	<script type="text/javascript" src="/SIGP/js/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="/SIGP/js/utils.js"></script>
 	<script type="text/javascript" src="/SIGP/js/jquery-ui-1.8.16.custom.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="/SIGP/styles/print.css" media="print" />
@@ -46,15 +47,29 @@
     	<div id="navigation">
 			<ul>
 				<!--[if IE 6]><li></li><![endif]-->
-				<li class="active"><a href="/SIGP/">Início</a></li>
+				<li <c:if test="${headername == 'index' or empty headername}">class="active"</c:if>>
+					<a href="/SIGP/">Início</a>
+				</li>
 				
-				<li><a href="/SIGP/linhadepesquisa/"><fmt:message key="header.linhaspesquisa" /></a></li>
-				<li><a href="/SIGP/grupo/"><fmt:message key="header.grupos" /></a></li>
-				<li><a href="/SIGP/projeto/"><fmt:message key="header.projetos" /></a></li>
-				<li><a href="/SIGP/disciplina/"><fmt:message key="header.disciplinas" /></a></li>
-				<li><a href="/SIGP/contribuinte/"><fmt:message key="header.contribuintes" /></a></li>
-				<li><a href="/SIGP/publicacao/"><fmt:message key="header.publicacoes" /></a></li>
-				<li><a href="/SIGP/login/" id="login_buttom"><fmt:message key="header.login" /></a></li>   
+				<li <c:if test="${headername == 'linha'}">class="active"</c:if>>
+					<a href="/SIGP/linhadepesquisa/" ><fmt:message key="header.linhaspesquisa" /></a>
+				</li>
+				<li <c:if test="${headername == 'grupo'}">class="active"</c:if>>
+					<a href="/SIGP/grupo/"><fmt:message key="header.grupos" /></a>
+				</li>
+				<li <c:if test="${headername == 'projeto'}">class="active"</c:if>>
+					<a href="/SIGP/projeto/"><fmt:message key="header.projetos" /></a>
+				</li>
+				<%-- <li><a href="/SIGP/disciplina/"><fmt:message key="header.disciplinas" /></a></li> --%>
+				<li <c:if test="${headername == 'membro'}">class="active"</c:if>>
+					<a href="/SIGP/contribuinte/"><fmt:message key="header.contribuintes" /></a>
+				</li>
+				<li <c:if test="${headername == 'publicacao'}">class="active"</c:if>>
+					<a href="/SIGP/publicacao/"><fmt:message key="header.publicacoes" /></a>
+				</li>
+				<li <c:if test="${headername == 'login'}">class="active"</c:if>>
+					<a href="/SIGP/login/" id="login_buttom"><fmt:message key="header.login" /></a>
+				</li>   
 			</ul>
 		</div>
 
