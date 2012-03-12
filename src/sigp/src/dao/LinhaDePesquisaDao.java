@@ -1,6 +1,7 @@
 package sigp.src.dao;
 
-import sigp.src.LinhaPesquisa;
+import sigp.src.component.LinhaPesquisa;
+
 import java.util.List;
 
 import org.hibernate.Session;

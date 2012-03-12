@@ -4,21 +4,14 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">Header 2</h2>
+        <h2 class="top">Linhas de Pesquisa</h2>
 
 
-
-<table>
-	<tr>		
-		<th><fmt:message key="linha.nome" /></th>
-	</tr>
 	<c:forEach items="${linhasdepesquisa}" var="linhapesquisa">
-		<tr>
-			<td><a href="/SIGP/linhadepesquisa/ver/${linhapesquisa.idPesquisa}">${linhapesquisa.nome}</a></td>
-			<td>${linhapesquisa.nome}</td>
-		</tr>
+		<h3><a href="/SIGP/linhadepesquisa/ver/${linhapesquisa.idPesquisa}">${linhapesquisa.nome}</a></h3>
 	</c:forEach>
-</table>
+
+<br /><br />
 <p>
 	<a href="/SIGP/linhadepesquisa/novo">Novo</a>
 </p>

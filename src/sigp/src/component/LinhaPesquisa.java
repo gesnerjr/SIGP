@@ -1,4 +1,4 @@
-package sigp.src;
+package sigp.src.component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,21 +29,30 @@ public class LinhaPesquisa {
 	@NotEmpty(message = "Linha de pesquisa precisa ter nome.")
 	private String nome;
 	
+	private String descricao;
+	
 	private List<Projeto> projetos = new ArrayList<Projeto>();
 	private List<Grupo> grupos = new ArrayList<Grupo>();
-	private LinhaPesquisa subLinha;
+	// Relacao = {Contribuinte, Linha de Pesquisa} 
 	private List<RelacaoPesquisa> relacoes = new ArrayList<RelacaoPesquisa>();
 	
-	/*@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "CONTRIBUINTE_LINHAP", 
-				joinColumns = { @JoinColumn(name = "LINHAP_ID") }, 
-				inverseJoinColumns = { @JoinColumn(name = "CONTRIBUINTE_ID") })
-	public List<Contribuinte> getContribuintes() {
-		return contribuintes;
+	/* 
+	 * Relacoes para a propria entidade precisam ser declaradas sob os
+	 * dois 'pontos de vista'
+	*/ 
+	private List<LinhaPesquisa> linhasPai;
+	private List<LinhaPesquisa> linhasFilhas;
+	
+	
+	public LinhaPesquisa() {
 	}
-	public void setContribuintes(List<Contribuinte> contribuintes) {
-		this.contribuintes = contribuintes;
-	}*/
+	
+	public LinhaPesquisa(String nome, String descricao){
+		this.nome = nome;
+		this.descricao = descricao;
+	}
+	
+	
 	@OneToMany(mappedBy = "linha")
 	public List<RelacaoPesquisa> getRelacoes() {
 		return relacoes;
@@ -51,28 +60,41 @@ public class LinhaPesquisa {
 	public void setRelacoes(List<RelacaoPesquisa> relacoes) {
 		this.relacoes = relacoes;
 	}
-	
-	
-	@ManyToOne
-	@JoinColumn(name = "SUB_LINHA_ID")
-	public LinhaPesquisa getSubLinha() {
-		return subLinha;
-	}
-	public void setSubLinha(LinhaPesquisa subLinha) {
-		this.subLinha = subLinha;
-	}
-	
-	
-	public LinhaPesquisa() {
-	}
-	public LinhaPesquisa(String name){
-		this.nome = name;
+
+	@ManyToMany
+	@JoinTable(name="LINHAS_PAI",
+			joinColumns = @JoinColumn(name = "LINHA_ID"),
+			inverseJoinColumns = @JoinColumn(name = "LINHAPAI_ID")
+	)
+
+	public List<LinhaPesquisa> getLinhasPai() {
+		return linhasPai;
 	}
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	public void setLinhasPai(List<LinhaPesquisa> linhasPai) {
+		this.linhasPai = linhasPai;
+	}
+	
+
+	@ManyToMany
+	@JoinTable(name="LINHAS_PAI",
+			joinColumns = @JoinColumn(name = "LINHAPAI_ID"),
+			inverseJoinColumns = @JoinColumn(name = "LINHA_ID")
+	)
+	public List<LinhaPesquisa> getLinhasFilhas() {
+		return linhasFilhas;
+	}
+	
+	public void setLinhasFilhas(List<LinhaPesquisa> linhasFilhas) {
+		this.linhasFilhas = linhasFilhas;
+	}
+	
+
+	@ManyToMany()
 	@JoinTable( name = "LINHAP_PROJETO",
-	joinColumns = @JoinColumn( name = "LINHAP_ID"), 
-	inverseJoinColumns = @JoinColumn (name = "PROJETO_ID"))
+		joinColumns = @JoinColumn( name = "LINHAP_ID"), 
+		inverseJoinColumns = @JoinColumn (name = "PROJETO_ID")
+	)
 	public List<Projeto> getProjetos() {
 		return projetos;
 	}
@@ -106,6 +128,15 @@ public class LinhaPesquisa {
 	}
 	public void setNome(String name) {
 		this.nome = name;
+	}
+	
+	@Lob
+	@Column(name = "LINHAP_DESC", nullable = false)
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 	

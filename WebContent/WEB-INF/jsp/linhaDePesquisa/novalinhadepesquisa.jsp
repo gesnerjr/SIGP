@@ -4,7 +4,7 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">Header 2</h2>
+        <h2 class="top">Linhas de Pesquisa: Inserir nova</h2>
 
 
 
@@ -27,14 +27,14 @@
 <!-- 		</tr> -->
 
 		<tr>
-			<td><fmt:message key="linha.sublinha" /></td>
-<!-- 			<td><select name="linhapesquisa.subLinha.idPesquisa"> -->
-			<td><select name="subLinhaidPesquisa">
-					<option value="null">Nenhum</option>
+			<td><fmt:message key="linha.linhapai" /></td>
+			<td><select name="idsLinhasPai[]" size="4" multiple>
+					<option value="0">Nenhum</option>
 					<c:forEach items="${linhasdepesquisa}" var="linhaslista">
 						<c:if test="${linhaslista.idPesquisa != linhapesquisa.idPesquisa}">
-							<option value="${linhaslista.idPesquisa}"
-								<c:if test="${linhapesquisa.subLinha.idPesquisa == linhaslista.idPesquisa}">selected="selected"</c:if>>${linhaslista.nome}</option>
+							<option value="${linhaslista.idPesquisa}">
+								<!-- <c:if test="${linhapesquisa.subLinha.idPesquisa == linhaslista.idPesquisa}">selected="selected"</c:if> -->
+								${linhaslista.nome}</option>
 						</c:if>
 					</c:forEach>
 			</select>

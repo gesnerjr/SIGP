@@ -12,9 +12,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sigp.src.LinhaPesquisa;
-import sigp.src.Projeto;
-import sigp.src.controllers.LinhaDePesquisaController;
+import sigp.src.component.LinhaPesquisa;
+import sigp.src.component.Projeto;
+import sigp.src.controller.LinhaDePesquisaController;
 import sigp.src.dao.LinhaDePesquisaDao;
 import sigp.src.dao.ProjetoDao;
 import br.com.caelum.vraptor.Result;
@@ -50,11 +50,12 @@ public class LinhaDePesquisaControllerTest {
         list = new ArrayList<LinhaPesquisa>();
         {
             LinhaPesquisa l = new LinhaPesquisa();
-            LinhaPesquisa subl = new LinhaPesquisa();
+            List<LinhaPesquisa> lpais = new ArrayList<LinhaPesquisa>();
+            lpais.add(new LinhaPesquisa("Pai"));
             l.setIdPesquisa(1L);
             l.setNome("Pesquisa 1");
             l.setProjetos(projetos);
-            l.setSubLinha(subl);
+            l.setLinhasPai(lpais);
             list.add(l);
         }
         when(dao.list()).thenReturn(list);
