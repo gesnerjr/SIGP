@@ -1,7 +1,17 @@
 <%@ include file="/header.jsp" %> 
 
-    <div id="side-contents" class="hidden">
-    </div>
+	<c:choose>
+		<c:when test="${userIsLogged}">
+    		<div id="side-contents">
+    			<fmt:message key="misc.acoes"></fmt:message>
+    			<hr />
+				<a href="novo"><fmt:message key="novo" /></a>
+    		</div>
+   		</c:when>
+   		<c:otherwise>
+   			<div id="side-contents" class="hidden"></div>
+   		</c:otherwise>
+	</c:choose>
     
     <div id="contents">
         <h2 class="top">Contribuintes</h2>
@@ -14,12 +24,7 @@
 		</ul>
 		
 		
-		<p>
-			<a href="novo"><fmt:message key="novo" /></a>
-		</p>
-		
-		<hr />
-	
+	<hr />
         
     </div> <!-- id=contents -->
 

@@ -4,7 +4,7 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">${grupo.nome}</h2>
+        <h2 class="top">${projeto.nome}: <fmt:message key="projeto.addmembro"></fmt:message></h2>
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -49,7 +49,7 @@
 <%@ include file="/errors.jsp" %> 
 
 <p>
-	<a href="/SIGP/grupo/"><fmt:message key="voltar" /></a>
+	<a href="/SIGP/projeto/ver/${projeto.idProjeto}"><fmt:message key="voltar" /></a>
 </p>
 
         

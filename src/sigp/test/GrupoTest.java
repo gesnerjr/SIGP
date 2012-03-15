@@ -11,9 +11,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sigp.src.Grupo;
-import sigp.src.LinhaPesquisa;
-import sigp.src.Projeto;
+import sigp.src.component.Grupo;
+import sigp.src.component.LinhaPesquisa;
+import sigp.src.component.Projeto;
 
 public class GrupoTest {
     

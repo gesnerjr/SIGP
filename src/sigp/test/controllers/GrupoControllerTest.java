@@ -13,8 +13,9 @@ import org.junit.Test;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 
-import sigp.src.Grupo;
-import sigp.src.controllers.GrupoController;
+import sigp.src.component.Grupo;
+import sigp.src.controller.GrupoController;
+import sigp.src.dao.ContribuinteDao;
 import sigp.src.dao.GrupoDao;
 import sigp.src.dao.LinhaDePesquisaDao;
 
@@ -25,6 +26,7 @@ public class GrupoControllerTest {
 	Validator validator;
 	LinhaDePesquisaDao ldao;
 	List<Grupo> list;
+	private ContribuinteDao cdao;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -32,7 +34,8 @@ public class GrupoControllerTest {
 		dao = mock(GrupoDao.class);
 		validator = mock(Validator.class);
 		ldao = mock(LinhaDePesquisaDao.class);
-		controller = new GrupoController(result, validator, dao, ldao);
+		cdao = mock(ContribuinteDao.class);
+		controller = new GrupoController(result, validator, dao, ldao, cdao);
 		
 		GrupoController controlmock = mock(GrupoController.class);
 		when(result.redirectTo(GrupoController.class)).thenReturn(controlmock);
@@ -54,7 +57,7 @@ public class GrupoControllerTest {
 			Grupo d = new Grupo();
 			d.setIdGrupo(2L);
 			d.setNome("Sistemas Operacionais");
-			d.setResponsavel(list.get(0));
+			//d.setResponsavel(list.get(0));
 			list.add(d);
 		}
 		when(dao.list()).thenReturn(list);
@@ -80,13 +83,13 @@ public class GrupoControllerTest {
 	public void testCria() {
 		{
 			Grupo d = list.get(0);
-			controller.cria(d, "", new ArrayList<Long>());
+			controller.cria(d, (long) 0, new ArrayList<Long>());
 			verify(dao).save(d);
 		}
 		{
 			Grupo d = new Grupo();
 			d.setNome("Teste Particular");
-			controller.cria(d, "Grupo Principal", new ArrayList<Long>());
+			controller.cria(d, (long) 0, new ArrayList<Long>());
 			verify(dao).save(d);
 			assertSame(d.getResponsavel(), list.get(0));
 		}
@@ -103,13 +106,13 @@ public class GrupoControllerTest {
 	public void testAltera() {
 		{
 			Grupo d = list.get(0);
-			controller.altera(d, "");
+			controller.altera(d, (long) 0);
 			verify(dao).update(d);
 		}
 		{
 			Grupo d = new Grupo();
 			d.setNome("Teste Particular");
-			controller.altera(d, list.get(0).getNome());
+			controller.altera(d, (long) 0);
 			verify(dao).update(d);
 			assertSame(d.getResponsavel(), list.get(0));
 		}

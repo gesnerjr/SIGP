@@ -54,9 +54,11 @@
 				<li <c:if test="${headername == 'linha'}">class="active"</c:if>>
 					<a href="/SIGP/linhadepesquisa/" ><fmt:message key="header.linhaspesquisa" /></a>
 				</li>
+				<%--
 				<li <c:if test="${headername == 'grupo'}">class="active"</c:if>>
 					<a href="/SIGP/grupo/"><fmt:message key="header.grupos" /></a>
 				</li>
+				--%>
 				<li <c:if test="${headername == 'projeto'}">class="active"</c:if>>
 					<a href="/SIGP/projeto/"><fmt:message key="header.projetos" /></a>
 				</li>

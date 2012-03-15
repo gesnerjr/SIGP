@@ -82,7 +82,7 @@
 		</tr>
 				
 		<tr>
-			<td colspan="2"><input type="hidden"
+			<td colspan="2" align="right"><input type="hidden"
 				name="publicacao.idPublicacao" value="${publicacao.idPublicacao}" />
 				<input type="submit" value="Alterar" /></td>
 		</tr>
@@ -92,7 +92,7 @@
 <%@ include file="/errors.jsp" %>
 
 <p>
-	<a href="/SIGP/publicacao/"><fmt:message key="voltar" /></a>
+	<a href="/SIGP/publicacao/ver/${publicacao.idPublicacao}"><fmt:message key="voltar" /></a>
 </p>
 
         

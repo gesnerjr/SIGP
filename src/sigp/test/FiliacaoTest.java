@@ -12,10 +12,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sigp.src.Contribuinte;
-import sigp.src.Filiacao;
-import sigp.src.Grupo;
-import sigp.src.Projeto;
+import sigp.src.component.Contribuinte;
+import sigp.src.component.Filiacao;
+import sigp.src.component.Grupo;
+import sigp.src.component.Projeto;
 
 public class FiliacaoTest {
 

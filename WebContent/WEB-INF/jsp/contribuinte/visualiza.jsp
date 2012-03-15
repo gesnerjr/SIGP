@@ -1,7 +1,18 @@
 <%@ include file="/header.jsp" %> 
 
-    <div id="side-contents" class="hidden">
-    </div>
+	<c:choose>
+		<c:when test="${userIsLogged}">
+    		<div id="side-contents">
+    			<fmt:message key="misc.acoes"></fmt:message>
+    			<hr />
+				<a href="/SIGP/contribuinte/alterar/${contribuinte.idContribuinte}"><fmt:message key="alterar" /></a><br />
+				<a href="/SIGP/contribuinte/apagar/${contribuinte.idContribuinte}"><fmt:message key="apagar" /></a>
+    		</div>
+   		</c:when>
+   		<c:otherwise>
+   			<div id="side-contents" class="hidden"></div>
+   		</c:otherwise>
+	</c:choose>
     
     <div id="contents">
         <h2 class="top">${contribuinte.nome}</h2>
@@ -28,7 +39,8 @@
 		</ul>
 	</div>
 	
-	<!-- Filiacoes -->
+	<%-- Filiacoes --%>
+	<%-- 
 	<div>
 		<b><fmt:message key="contribuinte.gruposfiliado" /></b><br /><br />
 		<ul>
@@ -37,6 +49,7 @@
 		</c:forEach>
 		</ul>
 	</div>
+	--%>
 	
 	<!-- LinhaPesquisa -->
 	<div>
@@ -48,14 +61,7 @@
 		</ul>
 	</div>
 	
-	<!-- resto da pagina -->
 	<br />
-	<br />
-	<p>
-		<a href="/SIGP/contribuinte/alterar/${contribuinte.idContribuinte}"><fmt:message key="alterar" /></a>
-		- <a href="/SIGP/contribuinte/apagar/${contribuinte.idContribuinte}"><fmt:message key="apagar" /></a>
-	</p>
-	
 	<hr />
 	<p>
 		<a href="/SIGP/contribuinte/"><fmt:message key="contribuinte.voltar" /></a>

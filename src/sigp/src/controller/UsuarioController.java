@@ -39,6 +39,13 @@ public class UsuarioController implements IHeaderController {
 	@Path("/login/")
 	public void index() {
 	}
+	
+	@Restricted
+	@Path("/login/sair")
+	public void sair() {
+		usuarioSessao.logout();
+		result.redirectTo(UsuarioController.class).index();
+	}
 
 	//@Restricted
 	@Path("/login/cadastro")
@@ -51,11 +58,7 @@ public class UsuarioController implements IHeaderController {
 		Usuario user = business.autenticar(login, senha);
 
 		if (user != null) {
-			System.out.println("-----------------------------------------------------------");
-			System.out.println("usuário logado:" + user.getLogin());
 			usuarioSessao.setUser(user);
-
-			result.include("logado", "Usuario " + user.getLogin() + " logado.");
 			result.redirectTo(UsuarioController.class).index();
 		} else {
 			result.include("error", "E-mail ou senha incorreta!").redirectTo(this).index();
@@ -64,7 +67,7 @@ public class UsuarioController implements IHeaderController {
 
 	//@Restricted
 	@Path("/login/novoUsuario")
-	public void novoUsuario() {
+	public void novo_form() {
 	}
 
 	//@Restricted
@@ -83,7 +86,7 @@ public class UsuarioController implements IHeaderController {
 					"Campo senha difere do campo de confirmação.",
 					"confirmação"));
 		}
-		validator.onErrorForwardTo(this).novoUsuario();
+		validator.onErrorForwardTo(this).novo_form();
 		if (!validator.hasErrors()) {
 			// Codifica a senha antes de armazenar no banco de dados.
 			usuario.codificaSenha();

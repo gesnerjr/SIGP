@@ -84,7 +84,7 @@
 		</tr>
 				
 		<tr>
-			<td colspan="2"><input type="submit" value="Criar" /></td>
+			<td colspan="2" align="right"><input type="submit" value="Criar" /></td>
 		</tr>
 	</table>
 </form>

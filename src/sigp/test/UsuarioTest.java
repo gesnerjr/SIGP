@@ -10,9 +10,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sigp.src.Contribuinte;
-import sigp.src.TipoUsuario;
-import sigp.src.Usuario;
+import sigp.src.component.Contribuinte;
+import sigp.src.component.TipoUsuario;
+import sigp.src.component.Usuario;
 
 public class UsuarioTest {
 

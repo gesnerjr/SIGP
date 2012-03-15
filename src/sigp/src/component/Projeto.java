@@ -32,6 +32,8 @@ public class Projeto {
     
 	private String financiamento;
 	
+	private String site;
+	
 	private List<Publicacao> publicacoes = new ArrayList<Publicacao>();
 	private List<LinhaPesquisa> linhasDePesquisa = new ArrayList<LinhaPesquisa>();
 	private List<Participacao> participacoes = new ArrayList<Participacao>();
@@ -104,13 +106,19 @@ public class Projeto {
 	public void setFinanciamento(String financiamento) {
 		this.financiamento = financiamento;
 	}
-
-	
 	
 	public void copy(Projeto p) {
 		this.setNome(p.getNome());
 		this.setDescricao(p.getDescricao());
 		this.setFinanciamento(p.getFinanciamento());
+	}
+	
+	@Column(name = "PROJETO_SITE", length=4096)
+	public String getSite() {
+		return site;
+	}
+	public void setSite(String site) {
+		this.site = site;
 	}
 
 }

@@ -11,9 +11,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sigp.src.Grupo;
-import sigp.src.Disciplina;
-import sigp.src.LinhaPesquisa;
+import sigp.src.component.Disciplina;
+import sigp.src.component.Grupo;
+import sigp.src.component.LinhaPesquisa;
 
 public class DisciplinaTest {
 

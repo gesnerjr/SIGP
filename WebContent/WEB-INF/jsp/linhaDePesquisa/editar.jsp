@@ -13,12 +13,17 @@
 	<table>
 		<tr>
 			<td><fmt:message key="linha.nome" /></td>
-			<td><input type="text" name="linhapesquisa.nome" value="${linhapesquisa.nome}" />
+			<td><input type="text" name="linhapesquisa.nome" value="${linhapesquisa.nome}" style="width:435px;" />
+			</td>
+		</tr>
+		<tr>
+			<td><fmt:message key="linha.descricao" /></td>
+			<td><textarea name="linhapesquisa.descricao" rows="5" cols="60">${linhapesquisa.descricao}</textarea>
 			</td>
 		</tr>
 		<tr>
 			<td><fmt:message key="linha.sublinha" /></td>
-			<td><select name="idsLinhasPai[]" size="4" multiple>
+			<td><select name="idsLinhasPai[]" size="4" multiple style="width:440px;" >
 					<option value="0">Nenhum</option>
 					<c:forEach items="${linhasdepesquisa}" var="linhaslista">
 						<c:if test="${linhaslista.idPesquisa != linhapesquisa.idPesquisa}">
@@ -31,7 +36,7 @@
 
 		<tr>
 			<td><fmt:message key="linha.projetos" /></td>
-			<td><select name="idsProjetos[]" size="4" multiple>
+			<td><select name="idsProjetos[]" size="4" multiple style="width:440px;" >
 					<option value="0">Nenhum</option>
 					<c:forEach items="${todosprojetos}" var="projeto">
 						<option value="${projeto.idProjeto}">${projeto.nome}</option>
@@ -41,7 +46,7 @@
 		</tr>
 
 		<tr>
-			<td colspan="2"><input type="hidden" name="linhapesquisa.idPesquisa"
+			<td colspan="2" align="right"><input type="hidden" name="linhapesquisa.idPesquisa"
 				value="${linhapesquisa.idPesquisa}" /> <input type="submit" value="Alterar" />
 			</td>
 		</tr>

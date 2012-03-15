@@ -12,9 +12,9 @@ import org.junit.Test;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
 
-import sigp.src.Disciplina;
-import sigp.src.Grupo;
-import sigp.src.controllers.DisciplinaController;
+import sigp.src.component.Disciplina;
+import sigp.src.component.Grupo;
+import sigp.src.controller.DisciplinaController;
 import sigp.src.dao.DisciplinaDao;
 import sigp.src.dao.GrupoDao;
 

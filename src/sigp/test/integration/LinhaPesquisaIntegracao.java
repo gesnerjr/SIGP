@@ -7,9 +7,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import sigp.src.LinhaPesquisa;
-import sigp.src.Projeto;
 
+import sigp.src.component.LinhaPesquisa;
+import sigp.src.component.Projeto;
 import sigp.src.dao.LinhaDePesquisaDao;
 import sigp.src.dao.ProjetoDao;
 
@@ -40,7 +40,7 @@ public class LinhaPesquisaIntegracao {
 		
 		LinhaPesquisa linhapesquisa = new LinhaPesquisa();
 		linhapesquisa.setNome("linha teste de integracao");
-		linhapesquisa.setSubLinha(null);
+		linhapesquisa.setLinhasPai(null);
 		//linhapesquisa.setSubLinha(ldao.getLinhaPesquisa(1L));
 		linhapesquisa.setProjetos(projetos);
 		new LinhaDePesquisaDao(session).save(linhapesquisa);

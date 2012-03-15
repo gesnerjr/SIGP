@@ -13,10 +13,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import sigp.src.Contribuinte;
-import sigp.src.TipoUsuario;
-import sigp.src.Usuario;
-import sigp.src.controllers.UsuarioController;
+import sigp.src.business.LoginBusiness;
+import sigp.src.component.Contribuinte;
+import sigp.src.component.TipoUsuario;
+import sigp.src.component.Usuario;
+import sigp.src.controller.UsuarioController;
 import sigp.src.dao.UsuarioDao;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
@@ -26,6 +27,7 @@ public class UsuarioControllerTest {
     UsuarioController controller;
     Result result;
     private Validator validator;
+    private LoginBusiness business;
     private UsuarioController controlmock;
     UsuarioDao dao;
 
@@ -42,7 +44,8 @@ public class UsuarioControllerTest {
         result = mock(Result.class);
         dao = mock(UsuarioDao.class);
         validator = mock(Validator.class);
-        controller = new UsuarioController(result, validator, dao);
+        business = mock(LoginBusiness.class);
+        controller = new UsuarioController(result, validator, dao, business, null);
 
         controlmock = mock(UsuarioController.class);
         when(result.redirectTo(UsuarioController.class))

@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import br.com.caelum.vraptor.Result;
 
-import sigp.src.controllers.IndexController;
+import sigp.src.controller.IndexController;
 
 
 public class IndexControllerTest {

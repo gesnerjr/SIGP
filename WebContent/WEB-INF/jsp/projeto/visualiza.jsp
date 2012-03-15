@@ -1,19 +1,37 @@
 <%@ include file="/header.jsp" %> 
 
-    <div id="side-contents" class="hidden">
-    </div>
+   	<c:choose>
+		<c:when test="${userIsLogged}">
+    		<div id="side-contents">
+    			<fmt:message key="misc.acoes"></fmt:message>
+    			<hr />
+    			<a href="/SIGP/projeto/${projeto.idProjeto}/addParticipacao">Adicionar membro</a><br />
+   				<a href="/SIGP/projeto/alterar/${projeto.idProjeto}">Alterar</a><br />
+				<a href="/SIGP/projeto/apagar/${projeto.idProjeto}">Apagar</a><br />
+	    		</div>
+   		</c:when>
+   		<c:otherwise>
+   			<div id="side-contents" class="hidden"></div>
+  		</c:otherwise>
+	</c:choose>
+    
     
     <div id="contents">
         <h2 class="top">${projeto.nome}</h2>
+
+<p>
+	<b><fmt:message key="projeto.descricao" /></b> <br /> ${projeto.descricao}
+</p>
+
+<p>
+	<b><fmt:message key="projeto.site" /></b> <br /> <a href="${projeto.site}">${projeto.site}</a>
+</p>
 
 
 <p>
 	<b><fmt:message key="projeto.financiamento" /></b> <br /> ${projeto.financiamento}
 </p>
 
-<p>
-	<b><fmt:message key="projeto.descricao" /></b> <br /> ${projeto.descricao}
-</p>
 
 <!-- LinhaPesquisa -->
 <p>
@@ -34,8 +52,7 @@
 	</c:forEach>
 	</ul>
 </p>
-	<p><a href="/SIGP/projeto/${projeto.idProjeto}/addParticipacao">Adicionar participação</a></p>
-
+	
 
 <!-- Publicacao -->
 <p>
@@ -51,11 +68,6 @@
 	</c:if>
 </p>
 
-
-<p>
-	<a href="/SIGP/projeto/alterar/${projeto.idProjeto}">Alterar</a>
-	- <a href="/SIGP/projeto/apagar/${projeto.idProjeto}">Apagar</a>
-</p>
 
 <hr />
 <p>
