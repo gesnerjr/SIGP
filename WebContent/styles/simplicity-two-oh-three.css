@@ -102,11 +102,13 @@ body {
 /***********************************************
    ELEMENTOS INTERNOS
 ************************************************/
+/*
 #contents img {
     height:auto;
     max-width:100%;
     width:auto;
 }
+*/
 
 #contents ol {
     line-height:130%;
@@ -648,4 +650,14 @@ select {
 
 
 textarea {
+}
+
+img.membro {
+	border: 1px solid #666;
+	width: 150px;
+	height: 150px;
+}
+
+ul.membro li {
+	list-style-type: none;
 }

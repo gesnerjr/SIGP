@@ -1,16 +1,24 @@
 package sigp.src.controller;
 
+import static br.com.caelum.vraptor.view.Results.json;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.im4java.core.IM4JavaException;
+
+import sigp.src.annotations.Restricted;
+import sigp.src.business.MembroBusiness;
+import sigp.src.component.Contribuinte;
+import sigp.src.component.Usuario;
+import sigp.src.dao.ContribuinteDao;
+import sigp.src.dao.UsuarioDao;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
+import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.caelum.vraptor.validator.ValidationMessage;
-import sigp.src.annotations.Restricted;
-import sigp.src.component.Contribuinte;
-import sigp.src.component.Grupo;
-import sigp.src.component.Usuario;
-import sigp.src.dao.ContribuinteDao;
-import sigp.src.dao.UsuarioDao;
 
 @Resource
 public class ContribuinteController implements IHeaderController{
@@ -21,10 +29,13 @@ public class ContribuinteController implements IHeaderController{
     private final UsuarioDao udao;
     private Validator validator;
 
+	private MembroBusiness business;
+
     public ContribuinteController(Result result, Validator validator,
-            ContribuinteDao dao, UsuarioDao udao) {
+            ContribuinteDao dao, UsuarioDao udao, MembroBusiness business) {
         this.result = result;
         this.validator = validator;
+        this.business = business;
         this.dao = dao;
         this.udao = udao;
     }
@@ -47,7 +58,7 @@ public class ContribuinteController implements IHeaderController{
 
     @Restricted
     @Path("/contribuinte/cria")
-    public void cria(final Contribuinte contribuinte, final Long idUsuario) {
+    public void cria(final Contribuinte contribuinte, final Long idUsuario, UploadedFile file) throws IOException {
         validator.validate(contribuinte);
         Usuario user = udao.getUsuario(idUsuario);
         if (user == null) {
@@ -61,7 +72,15 @@ public class ContribuinteController implements IHeaderController{
         user.setContribuinte(contribuinte);
         dao.save(contribuinte);
         udao.save(user);
-        result.redirectTo(ContribuinteController.class).index();
+    	
+        business.salvarImagem(contribuinte.getIdContribuinte(), file);
+    	dao.save(contribuinte);
+    	
+        if (file == null){
+        	result.redirectTo(ContribuinteController.class).index();
+        } else {
+        	result.redirectTo(ContribuinteController.class).resize_image(contribuinte.getIdContribuinte());
+        }
     }
 
     @Path("/contribuinte/ver/{id}")
@@ -87,7 +106,7 @@ public class ContribuinteController implements IHeaderController{
 
     @Restricted
     @Path("/contribuinte/altera")
-    public void altera(final Contribuinte contribuinte, final Long idUsuario) {
+    public void altera(final Contribuinte contribuinte, final Long idUsuario, UploadedFile file) throws IOException {
         validator.validate(contribuinte);
         Usuario user = udao.getUsuario(idUsuario);
         if (user == null) {
@@ -98,9 +117,16 @@ public class ContribuinteController implements IHeaderController{
         validator.onErrorForwardTo(this).altera_form(contribuinte.getIdContribuinte());
         contribuinte.setUsuario(user);
         user.setContribuinte(contribuinte);
+        
+        udao.update(user);        
         dao.update(contribuinte);
-        udao.update(user);
-        result.redirectTo(ContribuinteController.class).index();
+
+        if (file == null){
+        	result.redirectTo(ContribuinteController.class).index();
+        } else {
+            business.salvarImagem(contribuinte.getIdContribuinte(), file);
+        	result.redirectTo(ContribuinteController.class).resize_image(contribuinte.getIdContribuinte());
+        }
     }
 
     @Restricted
@@ -111,5 +137,28 @@ public class ContribuinteController implements IHeaderController{
             dao.delete(contribuinte);
         result.redirectTo(ContribuinteController.class).index();
     }
+    
 
+    @Path("/contribuinte/resfoto/{id}")
+    public void resize_image(Long id){
+        Contribuinte contribuinte = dao.getContribuinte(id);
+        if (contribuinte == null)
+            result.redirectTo(ContribuinteController.class).index();
+        else {
+            result.include("contribuinte", contribuinte);
+        }
+    }
+    
+    @Path("/contribuinte/resfoto/{id}/2")
+    public void resizeFoto(Long id, Integer x, Integer y, Integer w, Integer h){
+    	business.resizeImage(id, x, y, w, h);
+    	result.redirectTo(ContribuinteController.class).visualiza(id);
+    }
+    
+    @Path("/contribuinte/foto/{id}")
+    public File getFoto(Long id) throws IOException{
+    	return business.downloadImagem(id);
+    }
+
+    
 }

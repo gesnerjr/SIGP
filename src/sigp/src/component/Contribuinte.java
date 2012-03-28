@@ -13,9 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.caelum.vraptor.Resource;
@@ -30,6 +30,7 @@ public class Contribuinte {
 	private String nome;
 	private String nomeCitacao;
 	
+	private Boolean foto;
 	
 	private Usuario usuario;
 	
@@ -85,8 +86,8 @@ public class Contribuinte {
 	 * this.projetos = projetos; }
 	 */
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@Cascade(org.hibernate.annotations.CascadeType.ALL)
+	@OneToOne
+    @PrimaryKeyJoinColumn
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -132,6 +133,14 @@ public class Contribuinte {
 
 	public void setNomeCitacao(String nomeCitacao) {
 		this.nomeCitacao = nomeCitacao;
+	}
+
+	public Boolean getFoto() {
+		return foto;
+	}
+
+	public void setFoto(Boolean foto) {
+		this.foto = foto;
 	}
 
 }

@@ -17,7 +17,9 @@
     <div id="contents">
         <h2 class="top">${contribuinte.nome}</h2>
 
-	<br /><br />
+	<img class="membro" src="<c:url value="/contribuinte/foto/${contribuinte.idContribuinte}"></c:url>" />
+	<br />
+	<br />
 
 	<!-- Projetos -->
 	<div>

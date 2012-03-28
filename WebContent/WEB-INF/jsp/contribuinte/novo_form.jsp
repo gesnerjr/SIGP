@@ -8,7 +8,7 @@
 
 
 
-<form method="post" action="/SIGP/contribuinte/cria">
+<form method="post" action="/SIGP/contribuinte/cria" enctype="multipart/form-data">
 	<table>
 		<tr>
 			<td><fmt:message key="contribuinte.nome" /></td>
@@ -29,6 +29,11 @@
 					</c:forEach>
 			</select>
 			</td>
+		</tr>
+		
+		<tr>
+			<td><fmt:message key="contribuinte.foto" /></td>
+			<td><input type="file" name="file"/></td>
 		</tr>
 						
 		<tr>

@@ -16,9 +16,9 @@
     <div id="contents">
         <h2 class="top">Contribuintes</h2>
 
-		<ul>
+		<ul class="membro">
 			<c:forEach items="${contribuintes}" var="contrib">
-				<li><a href="/SIGP/contribuinte/ver/${contrib.idContribuinte}">${contrib.nome}</a>
+				<li><img class="membro" src="<c:url value="/contribuinte/foto/${contrib.idContribuinte}"></c:url>" /> <a href="/SIGP/contribuinte/ver/${contrib.idContribuinte}">${contrib.nome}</a>
 		 			(${contrib.nomeCitacao})</li>
 			</c:forEach>
 		</ul>
