@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -31,6 +33,8 @@ public class Contribuinte {
 	private String nomeCitacao;
 	
 	private Boolean foto;
+	
+	private UsuarioFuncao funcao;
 	
 	private Usuario usuario;
 	
@@ -141,6 +145,16 @@ public class Contribuinte {
 
 	public void setFoto(Boolean foto) {
 		this.foto = foto;
+	}
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "CONTRIBUINTE_FUNCAO", nullable = true, length = 255)
+	public UsuarioFuncao getFuncao() {
+		return funcao;
+	}
+
+	public void setFuncao(UsuarioFuncao funcao) {
+		this.funcao = funcao;
 	}
 
 }
