@@ -52,6 +52,11 @@ public class PublicacaoController implements IHeaderController {
 	public void index() {
 		result.include("publicacoes", dao.list());
 	}
+	
+	@Path("/publicacao/clist")
+	public void clean_list() {
+		result.include("publicacoes", dao.list());
+	}
 
 	@Restricted
 	@Path("/publicacao/novo")
