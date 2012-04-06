@@ -23,12 +23,13 @@
 
 	<!-- Projetos -->
 	<div>
-		<b><fmt:message key="contribuinte.projetosparticipou" /></b><br /><br />
+		<b><fmt:message key="contribuinte.projetosparticipou" /></b><br />
 		<ul>
 		<c:forEach items="${contribuinte.participacoes}" var="participacao">
 			<li><a href="/SIGP/projeto/ver/${participacao.projeto.idProjeto}">${participacao.projeto.nome}</a></li>
 		</c:forEach>
 		</ul>
+		<br />
 	</div>
 	
 	<!-- Publicacao -->
@@ -63,16 +64,6 @@
 		</ul>
 	</div>
 	
-	<br />
-	<hr />
-	<p>
-		<a href="/SIGP/contribuinte/"><fmt:message key="contribuinte.voltar" /></a>
-	</p>
-
-        
     </div> <!-- id=contents -->
-
-
-
 
 <%@ include file="/footer.jsp" %> 

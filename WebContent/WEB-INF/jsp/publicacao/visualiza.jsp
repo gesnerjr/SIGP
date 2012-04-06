@@ -57,18 +57,7 @@
 <p>
 	<b><fmt:message key="publicacao.pdf" /></b> <br /> <a href='<c:url value="/publicacao/pdf/${publicacao.idPublicacao}"/>'>${publicacao.titulo}</a>
 </p>
-
-
-<hr />
-
-<p>
-	<a href="/SIGP/publicacao/"><fmt:message key="publicacao.voltar" /></a>
-</p>
-
         
     </div> <!-- id=contents -->
-
-
-
 
 <%@ include file="/footer.jsp" %> 

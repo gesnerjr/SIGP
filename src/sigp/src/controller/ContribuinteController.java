@@ -11,7 +11,7 @@ import sigp.src.annotations.Restricted;
 import sigp.src.business.MembroBusiness;
 import sigp.src.component.Contribuinte;
 import sigp.src.component.Usuario;
-import sigp.src.dao.ContribuinteDao;
+import sigp.src.dao.MembroDao;
 import sigp.src.dao.UsuarioDao;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
@@ -25,14 +25,14 @@ public class ContribuinteController implements IHeaderController{
 	private static final String HEADER = "membro";
 	
     private final Result result;
-    private final ContribuinteDao dao;
+    private final MembroDao dao;
     private final UsuarioDao udao;
     private Validator validator;
 
 	private MembroBusiness business;
 
     public ContribuinteController(Result result, Validator validator,
-            ContribuinteDao dao, UsuarioDao udao, MembroBusiness business) {
+            MembroDao dao, UsuarioDao udao, MembroBusiness business) {
         this.result = result;
         this.validator = validator;
         this.business = business;
@@ -69,8 +69,9 @@ public class ContribuinteController implements IHeaderController{
         
         validator.onErrorForwardTo(this).novo_form();
         contribuinte.setUsuario(user);
-        user.setContribuinte(contribuinte);
         dao.save(contribuinte);
+        
+        user.setContribuinte(contribuinte);
         udao.save(user);
     	
         business.salvarImagem(contribuinte.getIdContribuinte(), file);
@@ -133,8 +134,12 @@ public class ContribuinteController implements IHeaderController{
     @Path("/contribuinte/apagar/{id}")
     public void remove(Long id) {
         Contribuinte contribuinte = dao.getContribuinte(id);
-        if (contribuinte != null)
+        if (contribuinte != null){
+        	Usuario user = contribuinte.getUsuario();
+        	user.setContribuinte(null);
+        	udao.save(user);
             dao.delete(contribuinte);
+        }
         result.redirectTo(ContribuinteController.class).index();
     }
     

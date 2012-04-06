@@ -7,7 +7,7 @@ import sigp.src.annotations.Restricted;
 import sigp.src.component.Contribuinte;
 import sigp.src.component.Grupo;
 import sigp.src.component.LinhaPesquisa;
-import sigp.src.dao.ContribuinteDao;
+import sigp.src.dao.MembroDao;
 import sigp.src.dao.GrupoDao;
 import sigp.src.dao.LinhaDePesquisaDao;
 import br.com.caelum.vraptor.Path;
@@ -24,11 +24,11 @@ public class GrupoController implements IHeaderController {
     private final Result result;
     private final GrupoDao dao;
     private final LinhaDePesquisaDao ldao;
-    private final ContribuinteDao cdao;
+    private final MembroDao cdao;
     private Validator validator;
 
     public GrupoController(Result result, Validator validator, GrupoDao dao, LinhaDePesquisaDao ldao,
-    		ContribuinteDao cdao) {
+    		MembroDao cdao) {
         this.result = result;
         this.validator = validator;
         this.dao = dao;

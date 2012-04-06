@@ -11,7 +11,7 @@ import sigp.src.component.Contribuinte;
 import sigp.src.component.Projeto;
 import sigp.src.component.Publicacao;
 import sigp.src.component.TipoVeiculo;
-import sigp.src.dao.ContribuinteDao;
+import sigp.src.dao.MembroDao;
 import sigp.src.dao.ProjetoDao;
 import sigp.src.dao.PublicacaoDao;
 import br.com.caelum.vraptor.Path;
@@ -28,14 +28,14 @@ public class PublicacaoController implements IHeaderController {
 	
 	private final PublicacaoDao dao;
 	private final ProjetoDao pdao;
-	private final ContribuinteDao cdao;
+	private final MembroDao cdao;
 	
     private Validator validator;
     
     private PublicacaoBusiness business;
 
 	public PublicacaoController(Result result, Validator validator, PublicacaoDao dao, ProjetoDao pdao,
-			ContribuinteDao cdao, PublicacaoBusiness business) {
+			MembroDao cdao, PublicacaoBusiness business) {
 		this.result = result;
 		this.validator = validator;
 		this.business = business;

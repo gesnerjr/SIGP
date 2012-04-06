@@ -14,19 +14,14 @@
 	</c:choose>
     
     <div id="contents">
-        <h2 class="top">Projetos</h2>
+        <h2 class="top"><fmt:message key="header.projetos" /></h2>
 
 	<c:forEach items="${projetos}" var="projeto">
 		<h3><a href="/SIGP/projeto/ver/${projeto.idProjeto}">${projeto.nome}</a></h3>
-		<p>${projeto.descricao}</p>
+		<p>${projeto.descricaoCurta}</p>
 	</c:forEach>
 
-<hr />
-<p><a href="/SIGP/"><fmt:message key="voltar_a_home" /></a></p>
         
     </div> <!-- id=contents -->
-
-
-
 
 <%@ include file="/footer.jsp" %> 

@@ -7,7 +7,7 @@ import sigp.src.annotations.Restricted;
 import sigp.src.component.Contribuinte;
 import sigp.src.component.Participacao;
 import sigp.src.component.Projeto;
-import sigp.src.dao.ContribuinteDao;
+import sigp.src.dao.MembroDao;
 import sigp.src.dao.ProjetoDao;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
@@ -20,10 +20,10 @@ public class ProjetoController implements IHeaderController {
 	private final Result result;
     private final ProjetoDao dao;
     private Validator validator;
-	private ContribuinteDao cdao;
+	private MembroDao cdao;
 
     public ProjetoController(Result result, Validator validator,
-            ProjetoDao dao, ContribuinteDao cdao) {
+            ProjetoDao dao, MembroDao cdao) {
         this.result = result;
         this.validator = validator;
         this.dao = dao;
@@ -61,8 +61,13 @@ public class ProjetoController implements IHeaderController {
     public void cria(final Projeto projeto) {
         validator.validate(projeto);
         validator.onErrorForwardTo(this).novo_form();
+        projeto.setDescricao(nl2br(projeto.getDescricao()));
         dao.save(projeto);
         result.redirectTo(ProjetoController.class).index();
+    }
+    
+    private String nl2br(String msg){
+    	return msg.replace("\n","<br>");
     }
     
     @Restricted
@@ -115,6 +120,7 @@ public class ProjetoController implements IHeaderController {
     public void altera(final Projeto projeto) {
         validator.validate(projeto);
         validator.onErrorForwardTo(this).altera_form(projeto.getIdProjeto());
+        projeto.setDescricao(nl2br(projeto.getDescricao()));
         dao.update(projeto);
         result.redirectTo(ProjetoController.class).index();
     }

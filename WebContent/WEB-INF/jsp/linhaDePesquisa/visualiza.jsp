@@ -50,17 +50,6 @@
 <%-- 	<li><a href="/SIGP/contribuinte/ver/${contribuinte.idContribuinte}">${contribuinte.nome}</a></li> --%>
 <%-- </c:forEach></ul> --%>
 
-
-
-<hr />
-<p>
-	<a href="/SIGP/linhadepesquisa/"><fmt:message key="linha.voltar" /></a>
-</p>
-
-        
     </div> <!-- id=contents -->
-
-
-
 
 <%@ include file="/footer.jsp" %> 

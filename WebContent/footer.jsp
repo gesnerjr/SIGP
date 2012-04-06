@@ -2,20 +2,15 @@
 </body>
 </html>
 -->
-
-        <div id="footer">
-            <p>
-			    <span class="end">2010 &copy; MAG | CSS baseado em <a href="http://home.simula.no/~harish/">HN</a></span>
-            </p>
-        </div>
-
-            </div> <!-- id=inner-prettification -->
-          </div> <!-- id=outer-prettification -->
-        </div> <!-- id=main -->
-
-      </div> <!-- id=container -->
-    </div><!-- id=window -->
-
-  </body>
-
+      </div> <!-- id=content -->
+    </div> <!-- id=body -->
+    
+    <div id="footer">
+     <p>
+       <span class="end">2010 &copy; MAG </span>
+     </p>
+ 	</div>
+    
+  </div> <!-- id=container -->
+</body>
 </html>

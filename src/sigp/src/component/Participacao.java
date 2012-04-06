@@ -36,7 +36,7 @@ public class Participacao {
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "DATA_FIM", nullable = false)
+	@Column(name = "DATA_FIM", nullable = true)
 	public Date getDataFim() {
 		return dataFim;
 	}

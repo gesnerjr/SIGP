@@ -4,7 +4,7 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">${linhapesquisa.nome}: Alterar</h2>
+        <h2 class="top">${linhapesquisa.nome}: <fmt:message key="alterar" /></h2>
 
 
 
@@ -24,7 +24,7 @@
 		<tr>
 			<td><fmt:message key="linha.sublinha" /></td>
 			<td><select name="idsLinhasPai[]" size="4" multiple style="width:440px;" >
-					<option value="0">Nenhum</option>
+					<option value="0"><fmt:message key="nenhuma" /></option>
 					<c:forEach items="${linhasdepesquisa}" var="linhaslista">
 						<c:if test="${linhaslista.idPesquisa != linhapesquisa.idPesquisa}">
 							<option value="${linhaslista.idPesquisa}">${linhaslista.nome}</option>
@@ -37,7 +37,7 @@
 		<tr>
 			<td><fmt:message key="linha.projetos" /></td>
 			<td><select name="idsProjetos[]" size="4" multiple style="width:440px;" >
-					<option value="0">Nenhum</option>
+					<option value="0"><fmt:message key="nenhum" /></option>
 					<c:forEach items="${todosprojetos}" var="projeto">
 						<option value="${projeto.idProjeto}">${projeto.nome}</option>
 					</c:forEach>
@@ -54,10 +54,6 @@
 </form>
 
 <%@ include file="/errors.jsp" %>
-
-<p>
-	<a href="/SIGP/linhaDePesquisa/"><fmt:message key="voltar" /></a>
-</p>
 
         
     </div> <!-- id=contents -->

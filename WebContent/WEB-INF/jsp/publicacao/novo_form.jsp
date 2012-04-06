@@ -4,7 +4,7 @@
     </div>
     
     <div id="contents">
-        <h2 class="top"><fmt:message key="header.publicacoes" /></h2>
+        <h2 class="top"><fmt:message key="header.publicacoes"/>: <fmt:message key="inserir" /></h2>
 
 
 
@@ -28,7 +28,7 @@
 		<tr>
 			<td><fmt:message key="publicacao.autores" /></td>
 			<td><select name="idsContribuintes[]" size="4" multiple style="width:440px;">
-					<option value="0"><fmt:message key="publicacao.nenhum" /></option>
+					<option value="0" selected ><fmt:message key="publicacao.nenhum" /></option>
 					<c:forEach items="${todoscontribuintes}" var="contribuinte">
 						<option value="${contribuinte.idContribuinte}">${contribuinte.nome}</option>
 					</c:forEach>
@@ -90,15 +90,7 @@
 </form>
 
 <%@ include file="/errors.jsp" %>
-
-<p>
-	<a href="/SIGP/publicacao/"><fmt:message key="voltar" /></a>
-</p>
-
         
     </div> <!-- id=contents -->
-
-
-
 
 <%@ include file="/footer.jsp" %> 

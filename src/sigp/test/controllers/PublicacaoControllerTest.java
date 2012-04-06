@@ -21,7 +21,7 @@ import sigp.src.component.Projeto;
 import sigp.src.component.Publicacao;
 import sigp.src.component.TipoVeiculo;
 import sigp.src.controller.PublicacaoController;
-import sigp.src.dao.ContribuinteDao;
+import sigp.src.dao.MembroDao;
 import sigp.src.dao.ProjetoDao;
 import sigp.src.dao.PublicacaoDao;
 
@@ -31,7 +31,7 @@ public class PublicacaoControllerTest {
     Result result;
     PublicacaoDao dao;
     ProjetoDao pdao;
-    ContribuinteDao cdao;
+    MembroDao cdao;
     SimpleDateFormat formatador = new SimpleDateFormat("dd/mm/yyyy");
     List<Publicacao> publicacoes;
     private Validator validator;
@@ -42,7 +42,7 @@ public class PublicacaoControllerTest {
         dao = mock(PublicacaoDao.class);
         validator = mock(Validator.class);
         pdao = mock(ProjetoDao.class);
-        cdao = mock(ContribuinteDao.class);
+        cdao = mock(MembroDao.class);
         controller = new PublicacaoController(result, validator, dao, pdao, cdao);
 
         PublicacaoController controlmock = mock(PublicacaoController.class);

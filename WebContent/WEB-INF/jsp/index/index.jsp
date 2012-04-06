@@ -12,6 +12,7 @@
 
         <p><fmt:message key="index.descricao" /></p>
 
+		<br />
         <h2>Contato</h2>
         <div class="contact">
           <!--<div class="address">

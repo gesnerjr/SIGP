@@ -16,7 +16,7 @@ import br.com.caelum.vraptor.ioc.Component;
 @Component
 public class MembroBusiness {
 
-	private static final String PATH_IMG = "/home/petals/sigpfiles/member";
+	private static final String PATH_IMG = "/sigpfiles/member";
 
 	public MembroBusiness(){
 	}

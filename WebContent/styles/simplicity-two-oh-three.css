@@ -660,4 +660,5 @@ img.membro {
 
 ul.membro li {
 	list-style-type: none;
+	clear: both;
 }

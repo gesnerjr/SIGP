@@ -4,7 +4,7 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">${contribuinte.nome}: Alterar</h2>
+        <h2 class="top">${contribuinte.nome}: <fmt:message key="alterar" /></h2>
 
 
 
@@ -26,9 +26,9 @@
 			<td><select name="idUsuario">
 					<option value="0"><fmt:message key = "contribuinte.nenhum" /></option>
 					<c:forEach items="${usuarios}" var="usuario">
-						<option value="${usuario.idUsuario}"  
+						<option value="${usuario.idUsuario}"   
 						<c:if test="${usuario.idUsuario == contribuinte.usuario.idUsuario}">
-							selected="selected"</c:if>
+							selected</c:if>
 						>${usuario.login}</option>
 					</c:forEach>
 			</select>
@@ -42,7 +42,7 @@
 		
 		<tr>
 			<td colspan="2"><input type="hidden" name="contribuinte.idContribuinte"
-				value="${contribuinte.idContribuinte}" /> <input type="submit" value="Alterar" />
+				value="${contribuinte.idContribuinte}" /> <input type="submit" value="<fmt:message key="alterar" />" />
 			</td>
 		</tr>
 	</table>
@@ -50,14 +50,7 @@
 
 <%@ include file="/errors.jsp" %> 
 
-<p>
-	<a href="/SIGP/contribuinte/"><fmt:message key="voltar" /></a>
-</p>
-
-        
+       
     </div> <!-- id=contents -->
-
-
-
 
 <%@ include file="/footer.jsp" %> 

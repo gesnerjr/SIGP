@@ -67,17 +67,7 @@
 		</ul>
 	</c:if>
 </p>
-
-
-<hr />
-<p>
-	<a href="/SIGP/projeto/"><fmt:message key="projeto.voltar" /></a>
-</p>
-
         
     </div> <!-- id=contents -->
-
-
-
 
 <%@ include file="/footer.jsp" %> 

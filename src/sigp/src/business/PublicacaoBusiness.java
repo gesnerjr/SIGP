@@ -13,7 +13,7 @@ import br.com.caelum.vraptor.ioc.Component;
 @Component
 public class PublicacaoBusiness {
 
-	private static final String PATH_PDF = "/home/petals/sigpfiles/pub";
+	private static final String PATH_PDF = "/sigpfiles/pub";
 
 	public PublicacaoBusiness(){
 	}

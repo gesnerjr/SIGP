@@ -30,6 +30,9 @@ public class Projeto {
     @NotEmpty(message = "Projeto precisa ter uma descrição.")
 	private String descricao;
     
+    @NotEmpty(message = "Projeto precisa ter uma descrição.")
+	private String descricaoCurta;
+    
 	private String financiamento;
 	
 	private String site;
@@ -119,6 +122,15 @@ public class Projeto {
 	}
 	public void setSite(String site) {
 		this.site = site;
+	}
+	
+	@Lob
+	@Column(name = "PROJETO_DESCRICAO_CURTA", nullable = false)
+	public String getDescricaoCurta() {
+		return descricaoCurta;
+	}
+	public void setDescricaoCurta(String descricaoCurta) {
+		this.descricaoCurta = descricaoCurta;
 	}
 
 }

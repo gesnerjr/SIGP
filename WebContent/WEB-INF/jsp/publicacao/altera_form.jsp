@@ -4,7 +4,7 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">${publicacao.titulo}: Alterar</h2>
+        <h2 class="top">${publicacao.titulo}: <fmt:message key="alterar" /></h2>
 
 
 
@@ -91,14 +91,6 @@
 
 <%@ include file="/errors.jsp" %>
 
-<p>
-	<a href="/SIGP/publicacao/ver/${publicacao.idPublicacao}"><fmt:message key="voltar" /></a>
-</p>
-
-        
     </div> <!-- id=contents -->
-
-
-
 
 <%@ include file="/footer.jsp" %> 

@@ -19,18 +19,12 @@
 <ul>
 	<c:forEach items="${publicacoes}" var="publicacao">
 		<li>
-		    <strong>"<a href="/SIGP/publicacao/ver/${publicacao.idPublicacao}">${publicacao.titulo}</a>"</strong>
+		    <strong>"<a href="<c:url value="/publicacao/ver/${publicacao.idPublicacao}"></c:url>">${publicacao.titulo}</a>"</strong>
 	    </li>
 	</c:forEach>
 </ul>
 
-
-<hr />
-<p><a href="/SIGP/"><fmt:message key="voltar_a_home" /></a></p>
-        
     </div> <!-- id=contents -->
-
-
 
 
 <%@ include file="/footer.jsp" %> 

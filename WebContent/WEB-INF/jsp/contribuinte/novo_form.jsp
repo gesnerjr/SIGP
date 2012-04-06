@@ -4,7 +4,7 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">Contribuintes</h2>
+        <h2 class="top"><fmt:message key="header.contribuintes"/>: <fmt:message key="inserir"/></h2>
 
 
 
@@ -44,14 +44,7 @@
 
 <%@ include file="/errors.jsp" %> 
 
-<p>
-	<a href="/SIGP/contribuinte/"><fmt:message key="voltar" /></a>
-</p>
-
         
     </div> <!-- id=contents -->
-
-
-
 
 <%@ include file="/footer.jsp" %> 

@@ -4,7 +4,7 @@
     </div>
     
     <div id="contents">
-        <h2 class="top">${projeto.nome}: Alterar</h2>
+        <h2 class="top">${projeto.nome}: <fmt:message key="alterar" /></h2>
 
 
 
@@ -13,6 +13,10 @@
 		<tr>
 			<td><fmt:message key="projeto.nome" /></td>
 			<td><input type="text" name="projeto.nome" value="${projeto.nome}" style="width:435px;"/></td>
+		</tr>
+		<tr>
+			<td><fmt:message key="projeto.descricaoCurta" /></td>
+			<td><textarea name="projeto.descricaoCurta" rows="5" cols="60">${projeto.descricaoCurta}</textarea></td>
 		</tr>
 		<tr>
 			<td><fmt:message key="projeto.descricao" /></td>
@@ -29,17 +33,13 @@
 		
 		<tr>
 			<td colspan="2"><input type="hidden" name="projeto.idProjeto"
-				value="${projeto.idProjeto}" /> <input type="submit" value="Alterar" />
+				value="${projeto.idProjeto}" /> <input type="submit" value="<fmt:message key="alterar" />" />
 			</td>
 		</tr>
 	</table>
 </form>
 
 <%@ include file="/errors.jsp" %> 
-
-<p>
-	<a href="/SIGP/projeto/"><fmt:message key="voltar" /></a>
-</p>
 
         
     </div> <!-- id=contents -->

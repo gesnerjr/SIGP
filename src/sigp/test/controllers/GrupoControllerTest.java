@@ -15,7 +15,7 @@ import br.com.caelum.vraptor.Validator;
 
 import sigp.src.component.Grupo;
 import sigp.src.controller.GrupoController;
-import sigp.src.dao.ContribuinteDao;
+import sigp.src.dao.MembroDao;
 import sigp.src.dao.GrupoDao;
 import sigp.src.dao.LinhaDePesquisaDao;
 
@@ -26,7 +26,7 @@ public class GrupoControllerTest {
 	Validator validator;
 	LinhaDePesquisaDao ldao;
 	List<Grupo> list;
-	private ContribuinteDao cdao;
+	private MembroDao cdao;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -34,7 +34,7 @@ public class GrupoControllerTest {
 		dao = mock(GrupoDao.class);
 		validator = mock(Validator.class);
 		ldao = mock(LinhaDePesquisaDao.class);
-		cdao = mock(ContribuinteDao.class);
+		cdao = mock(MembroDao.class);
 		controller = new GrupoController(result, validator, dao, ldao, cdao);
 		
 		GrupoController controlmock = mock(GrupoController.class);

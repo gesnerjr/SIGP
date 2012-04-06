@@ -10,10 +10,10 @@ import org.hibernate.Transaction;
 import br.com.caelum.vraptor.ioc.Component;
 
 @Component
-public class ContribuinteDao {
+public class MembroDao {
 	private final Session session;
 
-	public ContribuinteDao(Session session) {
+	public MembroDao(Session session) {
 		this.session = session;
 	}
 
@@ -28,13 +28,17 @@ public class ContribuinteDao {
 	
 	public void save(Contribuinte contrib) {
 		Transaction tx = session.beginTransaction();
-		session.save(contrib);
+		if (contrib.getIdContribuinte() == null){
+			session.save(contrib);
+		} else {
+			session.merge(contrib);
+		}
 		tx.commit();
 	}
 
 	public void update(Contribuinte contrib) {
 		Transaction tx = session.beginTransaction();
-		session.update(contrib);
+		session.merge(contrib);
 		tx.commit();
 	}
 

@@ -14,21 +14,25 @@
 	</c:choose>
     
     <div id="contents">
-        <h2 class="top">Contribuintes</h2>
+        <h2 class="top"><fmt:message key="header.contribuintes" /></h2>
 
 		<ul class="membro">
 			<c:forEach items="${contribuintes}" var="contrib">
-				<li><img class="membro" src="<c:url value="/contribuinte/foto/${contrib.idContribuinte}"></c:url>" /> <a href="/SIGP/contribuinte/ver/${contrib.idContribuinte}">${contrib.nome}</a>
-		 			(${contrib.nomeCitacao})</li>
+				<li>
+					<div class="left">
+						<a href="/SIGP/contribuinte/ver/${contrib.idContribuinte}">
+							<img class="membro" src="<c:url value="/contribuinte/foto/${contrib.idContribuinte}"></c:url>" />
+						</a>
+					</div>
+					<div>
+						<a href="/SIGP/contribuinte/ver/${contrib.idContribuinte}">${contrib.nome}</a><br />
+		 				(${contrib.nomeCitacao})
+	 				</div>
+	 				<span class="clear"></span>
+	 			</li>
 			</c:forEach>
 		</ul>
 		
-		
-	<hr />
-        
     </div> <!-- id=contents -->
-
-
-
 
 <%@ include file="/footer.jsp" %> 

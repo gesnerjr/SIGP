@@ -31,7 +31,7 @@ $(function(){
     </div>
     
     <div id="contents">
-        <h2 class="top">Contribuinte: Redimensionar foto</h2>
+        <h2 class="top"><fmt:message key="contribuinte.redimensionar_foto" /></h2>
 
 
 <form method="post" action="/SIGP/contribuinte/resfoto/${contribuinte.idContribuinte}/2">
@@ -42,15 +42,15 @@ $(function(){
 <input type="hidden" name="w" id="w" />
 <input type="hidden" name="h" id="h" />
 <br />
-<input type="submit" value="Redimensionar foto" />
-<input type="button" value="Cancelar" id="cancelar" />
+<input type="submit" value="<fmt:message key="redimensionar" />" />
+<input type="button" value="<fmt:message key="cancelar" />" id="cancelar" />
 
 </form>
 
 <%@ include file="/errors.jsp" %> 
 
 <p>
-	<a href="/SIGP/contribuinte/"><fmt:message key="voltar" /></a>
+	<a href="<c:url value="/contribuinte/"></c:url>"><fmt:message key="voltar" /></a>
 </p>
 
         

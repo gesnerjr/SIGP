@@ -16,10 +16,15 @@
     <meta name="revisit-after" content="1 days" />	
     <meta name="copyright" content="All content (c)" />
 
-   	<title><fmt:message key="header.titulo" /></title>
+   	<title><fmt:message key="titulo" /></title>
 
+<%-- 
     <style type="text/css" title="The shiny, Web 2.0 version of 'Simplicity,' a pseudo-professional style-sheet." media="all">
       @import "/SIGP/styles/simplicity-two-oh-three.css";
+    </style>
+--%>    
+    <style type="text/css" title="The shiny, Web 2.0 version of 'Simplicity,' a pseudo-professional style-sheet." media="all">
+      @import "/SIGP/styles/ccsl.css";
     </style>
     <!--[if IE]>
     <style type="text/css" media="all">
@@ -37,22 +42,41 @@
 	<script type="text/javascript" src="/SIGP/js/jquery.Jcrop.min.js"></script>
 	
 
-    <link rel="stylesheet" type="text/css" href="/SIGP/styles/print.css" media="print" />
+    <%-- <link rel="stylesheet" type="text/css" href="/SIGP/styles/print.css" media="print" /> --%>
     <link rel="shortcut icon" href="/favicon.png"  />
     <link rel="icon" href="/favicon.png" />
   </head>
 
   <body>
-    <div id="window">
+    
       <div id="container">
-        <br />
-        <div id="logo"><h1>&nbsp;<fmt:message key="header.titulo" /></h1></div>
+        <div id="barra">
+      		<div class="clear-block block block-translation">
+				<div class="content">
+					<div class="item-list">
+						<ul>
+							<li><span class="i18n-link">
+								<a href="<c:url value="/lang/mudarLingua?lingua=en"></c:url>"><img src="/SIGP/images/flags/en.png" class="i18n-icon" width="16" height="12" alt="English"/></a>&nbsp;<a href="<c:url value="/lang/mudarLingua?lingua=en"></c:url>">English</a></span>
+							</li>
+							<li><span class="i18n-link">
+								<a href="<c:url value="/lang/mudarLingua?lingua=pt-br"></c:url>" class="active"><img src="/SIGP/images/flags/pt-br.png" class="i18n-icon" width="16" height="12" alt="Portuguese, Brazil"/></a>&nbsp;<a href="<c:url value="/lang/mudarLingua?lingua=pt-br"></c:url>" class="active">Português, Brasil</a></span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<span id="logged">
+				<a href="<c:url value="/login/"></c:url>" id="login_buttom"><fmt:message key="header.login" /></a>
+			</span>
+        </div>
+        
+        <div id="header"><br /><h1><fmt:message key="titulo" /></h1></div>
 
-    	<div id="navigation">
+    	<div id="menu">
 			<ul>
 				<!--[if IE 6]><li></li><![endif]-->
 				<li <c:if test="${headername == 'index' or empty headername}">class="active"</c:if>>
-					<a href="/SIGP/">Início</a>
+					<a href="/SIGP/" >Inicio</a>
 				</li>
 				
 				<li <c:if test="${headername == 'linha'}">class="active"</c:if>>
@@ -73,17 +97,10 @@
 				<li <c:if test="${headername == 'publicacao'}">class="active"</c:if>>
 					<a href="/SIGP/publicacao/"><fmt:message key="header.publicacoes" /></a>
 				</li>
-				<li <c:if test="${headername == 'login'}">class="active"</c:if>>
-					<a href="/SIGP/login/" id="login_buttom"><fmt:message key="header.login" /></a>
-				</li>   
 			</ul>
 		</div>
 
-        <div id="main">
+        <div id="body">
 
-          <div id="outer-prettification">
-            <div id="inner-prettification">
+            <div id="monocontent">
             
-				<div id="header">
-			        <h1 id="title"><span><!-- Grupo de Trabalho do Prof. Marco Aurélio Gerosa --></span></h1>
-			    </div>

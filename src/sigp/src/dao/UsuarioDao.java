@@ -43,14 +43,16 @@ public class UsuarioDao {
 	public List<Usuario> list(){
 		return this.session.createCriteria(Usuario.class).list();
 	}
+	
 	public void delete(Usuario usuario){
 		Transaction t = session.beginTransaction();
 		session.delete(usuario);
 		t.commit();
 	}
+	
 	public void update(Usuario usuario){
 		Transaction t = session.beginTransaction();
-		session.update(usuario);
+		session.merge(usuario);
 		t.commit();
 	}
 	
