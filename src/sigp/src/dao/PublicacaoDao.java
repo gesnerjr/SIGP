@@ -40,6 +40,8 @@ public class PublicacaoDao {
 
 	public void delete(Publicacao publicacao) {
 		Transaction tx = session.beginTransaction();
+		publicacao.setContribuintes(null);
+		publicacao.setProjetos(null);
 		session.delete(publicacao);
 		tx.commit();
 	}

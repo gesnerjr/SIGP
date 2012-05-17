@@ -50,7 +50,9 @@ public class Publicacao {
 	@NotNull(message = "Publicação precisa ter uma data válida.")
 	private Integer ano;
 	
+	
 	private List<Projeto> projetos = new ArrayList<Projeto>();
+	private List<Software> software = new ArrayList<Software>();
 	private List<Contribuinte> contribuintes = new ArrayList<Contribuinte>();
 
 	private Boolean pdf;
@@ -67,6 +69,19 @@ public class Publicacao {
 		this.projetos = projetos;
 	}
 
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable( name = "SOFTWARE_PUBLICACAO",
+		inverseJoinColumns = @JoinColumn( name = "SOFTWARE_ID"), 
+		joinColumns = @JoinColumn (name = "PUBLICACAO_ID")
+	)
+	public List<Software> getSoftware() {
+		return software;
+	}
+
+	public void setSoftware(List<Software> software) {
+		this.software = software;
+	}
 
 	public Publicacao() {
 	}
@@ -85,7 +100,8 @@ public class Publicacao {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "CONTRIBUINTE_PUBLICACAO", 
 		joinColumns = @JoinColumn(name = "PUBLICACAO_ID"),
-		inverseJoinColumns = @JoinColumn(name = "CONTRIBUINTE_ID"))
+		inverseJoinColumns = @JoinColumn(name = "CONTRIBUINTE_ID")
+	)
 	public List<Contribuinte> getContribuintes() {
 		return contribuintes;
 	}

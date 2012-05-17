@@ -44,9 +44,10 @@ public class Usuario {
 	
 	@NotEmpty(message = "Usuário precisa ter login.")
 	private String login;
+	
 	private Contribuinte contribuinte;
 	
-	@OneToOne(mappedBy="usuario", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="usuario", cascade=CascadeType.ALL, optional=true)
 	public Contribuinte getContribuinte() {
 		return contribuinte;
 	}

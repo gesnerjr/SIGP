@@ -12,5 +12,7 @@
  	</div>
     
   </div> <!-- id=container -->
+  
+<%@ include file="/ajax-selects.jsp" %> 
 </body>
 </html>

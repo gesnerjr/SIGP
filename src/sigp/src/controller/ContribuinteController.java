@@ -1,11 +1,7 @@
 package sigp.src.controller;
 
-import static br.com.caelum.vraptor.view.Results.json;
-
 import java.io.File;
 import java.io.IOException;
-
-import org.im4java.core.IM4JavaException;
 
 import sigp.src.annotations.Restricted;
 import sigp.src.business.MembroBusiness;
@@ -13,7 +9,9 @@ import sigp.src.component.Contribuinte;
 import sigp.src.component.Usuario;
 import sigp.src.dao.MembroDao;
 import sigp.src.dao.UsuarioDao;
+import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
+import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.Validator;
@@ -48,6 +46,35 @@ public class ContribuinteController implements IHeaderController{
     public void index() {
         result.include("contribuintes", dao.list());
     }
+    
+    @Get
+    @Path("/contribuinte/ajax")
+    public void ajax(String q){
+    	if (q == null){
+    		result.include("contribuintes", dao.list());
+    	} else {
+    		result.include("contribuintes", dao.search_by_name(q));
+    	}
+    }
+    
+    @Post
+    @Path("/contribuinte/ajax")
+    public void ajax(final Contribuinte contribuinte, final Long idUsuario) throws IOException {
+        validator.validate(contribuinte);
+        Usuario user = udao.getUsuario(idUsuario);
+        
+        validator.onErrorForwardTo(this).novo_form();
+        dao.save(contribuinte);
+        
+        if (user != null) {
+        	user.setContribuinte(contribuinte);
+            contribuinte.setUsuario(user);
+        	udao.save(user);
+        }
+    	
+    	dao.save(contribuinte);
+    	result.redirectTo(ContribuinteController.class).index();
+    }
 
     @Restricted
     @Path("/contribuinte/novo")
@@ -62,17 +89,18 @@ public class ContribuinteController implements IHeaderController{
         validator.validate(contribuinte);
         Usuario user = udao.getUsuario(idUsuario);
         if (user == null) {
-            validator.add(new ValidationMessage("usuário",
-                    "não existe"));
+            //validator.add(new ValidationMessage("usuário", "não existe"));
         }
 
         
         validator.onErrorForwardTo(this).novo_form();
-        contribuinte.setUsuario(user);
         dao.save(contribuinte);
         
-        user.setContribuinte(contribuinte);
-        udao.save(user);
+        if (user != null) {
+        	user.setContribuinte(contribuinte);
+            contribuinte.setUsuario(user);
+        	udao.save(user);
+        }
     	
         business.salvarImagem(contribuinte.getIdContribuinte(), file);
     	dao.save(contribuinte);

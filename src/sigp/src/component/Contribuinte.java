@@ -9,13 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -26,10 +26,15 @@ import br.com.caelum.vraptor.Resource;
 @Resource
 @Table(name = "CONTRIBUINTE")
 public class Contribuinte {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idContribuinte;
 	
 	@NotEmpty(message = "Contribuinte precisa ter um nome.")
+	
 	private String nome;
+	
 	private String nomeCitacao;
 	
 	private Boolean foto;
@@ -40,7 +45,10 @@ public class Contribuinte {
 	
 	private List<Publicacao> publicacoes = new ArrayList<Publicacao>();
 	private List<Filiacao> filiacoes = new ArrayList<Filiacao>();
-	private List<Participacao> participacoes = new ArrayList<Participacao>();
+	
+	private List<Projeto> projetosCoordenador = new ArrayList<Projeto>();
+	private List<Projeto> projetosMembro = new ArrayList<Projeto>();
+	
 	private List<RelacaoPesquisa> relacoes = new ArrayList<RelacaoPesquisa>();
 
 	@OneToMany(mappedBy = "contribuinte")
@@ -52,13 +60,20 @@ public class Contribuinte {
 		this.filiacoes = filiacoes;
 	}
 
-	@OneToMany(mappedBy = "contribuinte",  cascade = CascadeType.ALL)
-	public List<Participacao> getParticipacoes() {
-		return participacoes;
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "coordenadores")
+	public List<Projeto> getProjetosCoordenador() {
+		return projetosCoordenador;
+	}
+	public void setProjetosCoordenador(List<Projeto> projetosCoordenador) {
+		this.projetosCoordenador = projetosCoordenador;
 	}
 
-	public void setParticipacoes(List<Participacao> participacoes) {
-		this.participacoes = participacoes;
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "membros")
+	public List<Projeto> getProjetosMembro() {
+		return projetosMembro;
+	}
+	public void setProjetosMembro(List<Projeto> projetosMembro) {
+		this.projetosMembro = projetosMembro;
 	}
 
 	@OneToMany(mappedBy = "contribuinte",  cascade = CascadeType.ALL)
@@ -70,28 +85,7 @@ public class Contribuinte {
 		this.relacoes = relacoes;
 	}
 
-	/*
-	 * @ManyToMany(cascade = CascadeType.ALL)
-	 * 
-	 * @JoinTable(name = "CONTRIBUINTE_LINHAP", joinColumns = { @JoinColumn(name
-	 * = "CONTRIBUINTE_ID") }, inverseJoinColumns = { @JoinColumn(name =
-	 * "LINHAP_ID") }) public List<RelacaoPesquisa> getRelacoesPesquisa() {
-	 * return linhasDePesquisa; } public void
-	 * setLinhasDePesquisa(List<LinhaPesquisa> linhasDePesquisa) {
-	 * this.linhasDePesquisa = linhasDePesquisa; }
-	 * 
-	 * 
-	 * @ManyToMany(cascade = CascadeType.ALL)
-	 * 
-	 * @JoinTable(name = "CONTRIBUINTE_PROJETO", joinColumns = {
-	 * @JoinColumn(name = "CONTRIBUINTE_ID") }, inverseJoinColumns = {
-	 * @JoinColumn(name = "PROJETO_ID") }) public List<Projeto> getProjetos() {
-	 * return projetos; } public void setProjetos(List<Projeto> projetos) {
-	 * this.projetos = projetos; }
-	 */
-
-	@OneToOne
-    @PrimaryKeyJoinColumn
+	@OneToOne(optional=true)
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -101,7 +95,10 @@ public class Contribuinte {
 	}
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "CONTRIBUINTE_PUBLICACAO", joinColumns = { @JoinColumn(name = "CONTRIBUINTE_ID") }, inverseJoinColumns = { @JoinColumn(name = "PUBLICACAO_ID") })
+	@JoinTable(name = "CONTRIBUINTE_PUBLICACAO", 
+		joinColumns = @JoinColumn(name = "CONTRIBUINTE_ID"), 
+		inverseJoinColumns = @JoinColumn(name = "PUBLICACAO_ID")
+	)
 	public List<Publicacao> getPublicacoes() {
 		return publicacoes;
 	}

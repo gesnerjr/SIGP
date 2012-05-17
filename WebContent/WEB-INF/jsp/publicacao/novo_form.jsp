@@ -12,7 +12,7 @@
 	<table>
 		<tr>
 			<td><fmt:message key="publicacao.titulo" /></td>
-			<td><input type="text" name="publicacao.titulo" style="width:435px;" /></td>
+			<td><input type="text" name="publicacao.titulo" /></td>
 		</tr>
 		
 		<tr>
@@ -27,17 +27,15 @@
 		
 		<tr>
 			<td><fmt:message key="publicacao.autores" /></td>
-			<td><select name="idsContribuintes[]" size="4" multiple style="width:440px;">
-					<option value="0" selected ><fmt:message key="publicacao.nenhum" /></option>
-					<c:forEach items="${todoscontribuintes}" var="contribuinte">
-						<option value="${contribuinte.idContribuinte}">${contribuinte.nome}</option>
-					</c:forEach>
-			</select></td>
+			<td>
+			     <input id="authorinput" type="text">
+				<select id="selectauthor" name="idsContribuintes[]" size="4" multiple style="width:440px;display:none;"></select>
+			</td>
 		</tr>		
 		
 		<tr>
 			<td><fmt:message key="publicacao.veiculotipo" /></td>
-			<td><select name="publicacao.veiculoTipo" style="width:440px;">
+			<td><select name="publicacao.veiculoTipo">
 					<c:forEach items="${veiculos}" var="veiculo">
 						<option value="${veiculo}">${veiculo.tipoVeiculo}</option>
 					</c:forEach>
@@ -46,13 +44,13 @@
 		
 		<tr>
 			<td><fmt:message key="publicacao.veiculonome" /></td>
-			<td><input type="text" name="publicacao.veiculoNome" style="width:435px;" /></td>
+			<td><input type="text" name="publicacao.veiculoNome" /></td>
 		</tr>
 		
 		<tr>
 			<td><fmt:message key="publicacao.data" /></td>
 			<td>
-				<input type="text" id="month" name="month" class="monthPicker" style="width:435px;"/>
+				<input type="text" id="month" name="month" class="monthPicker" />
 				<input type="hidden" class="yearResult"  name="publicacao.ano" value="" />
 				<input type="hidden" class="monthResult" name="publicacao.mes" value="" />
 			</td>
@@ -60,17 +58,15 @@
 		
 		<tr>
 			<td><fmt:message key="publicacao.selecionar_projetos" /></td>
-			<td><select name="idsProjetos[]" size="4" multiple style="width:440px;">
-					<option value="0" selected><fmt:message key="publicacao.nenhum" /></option>
-					<c:forEach items="${todosprojetos}" var="projeto">
-						<option value="${projeto.idProjeto}">${projeto.nome}</option>
-					</c:forEach>
-			</select></td>
+			<td>
+	             <input id="projectinput" type="text">
+                <select id="selectproject" name="idsProjetos[]" size="4" multiple style="width:440px;display:none;"></select>
+			</td>
 		</tr>
 		
 		<tr>
 			<td><fmt:message key="publicacao.link" /></td>
-			<td><input type="text" name="publicacao.linkEditora" style="width:435px;" /></td>
+			<td><input type="text" name="publicacao.linkEditora" /></td>
 		</tr>
 		
 		<tr>
@@ -80,7 +76,7 @@
 		
 		<tr>
 			<td><fmt:message key="publicacao.pdf" /></td>
-			<td><input type="file" name="pdf"/></td>
+			<td><input type="file" name="pdf" /></td>
 		</tr>
 				
 		<tr>

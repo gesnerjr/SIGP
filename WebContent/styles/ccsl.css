@@ -1017,3 +1017,23 @@ img.membro {
 span.tiny {
 	font-size: 11px;
 }
+
+
+
+/* FORMS */
+input {
+	width: 450px;
+	border: 1px solid #999;
+	height: 20px;
+}
+
+select {
+	border: 1px solid #999;
+	width: 452px;
+	min-height:20px;
+}
+
+textarea {
+	border: 1px solid #999;
+	width: 450px;
+}

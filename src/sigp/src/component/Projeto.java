@@ -8,9 +8,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -27,10 +28,8 @@ public class Projeto {
     @NotEmpty(message = "Projeto precisa ter um nome.")
 	private String nome;
     
-    @NotEmpty(message = "Projeto precisa ter uma descrição.")
 	private String descricao;
     
-    @NotEmpty(message = "Projeto precisa ter uma descrição.")
 	private String descricaoCurta;
     
 	private String financiamento;
@@ -38,26 +37,12 @@ public class Projeto {
 	private String site;
 	
 	private List<Publicacao> publicacoes = new ArrayList<Publicacao>();
+	private List<Software> software = new ArrayList<Software>();
 	private List<LinhaPesquisa> linhasDePesquisa = new ArrayList<LinhaPesquisa>();
-	private List<Participacao> participacoes = new ArrayList<Participacao>();
+	
 
-	/*@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "CONTRIBUINTE_PROJETO", 
-				joinColumns = { @JoinColumn(name = "PROJETO_ID") }, 
-				inverseJoinColumns = { @JoinColumn(name = "CONTRIBUINTE_ID") })
-	public List<Contribuinte> getContribuintes() {
-		return contribuintes;
-	}
-	public void setContribuintes(List<Contribuinte> contribuintes) {
-		this.contribuintes = contribuintes;
-	}*/
-	@OneToMany(mappedBy = "projeto",  cascade = CascadeType.ALL)
-	public List<Participacao> getParticipacoes() {
-		return participacoes;
-	}
-	public void setParticipacoes(List<Participacao> participacoes) {
-		this.participacoes = participacoes;
-	}
+	private List<Contribuinte> coordenadores = new ArrayList<Contribuinte>();
+	private List<Contribuinte> membros = new ArrayList<Contribuinte>();
 	
 
 	@ManyToMany(mappedBy = "projetos")
@@ -77,6 +62,40 @@ public class Projeto {
 		this.publicacoes = publicacoes;
 	}	
 	
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "projetos")
+	public List<Software> getSoftware() {
+		return software;
+	}
+	public void setSoftware(List<Software> software) {
+		this.software = software;
+	}
+
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable( name = "PROJETO_COORDENADORES",
+		joinColumns = @JoinColumn( name = "CONTRIBUINTE_ID"), 
+		inverseJoinColumns = @JoinColumn (name = "PROJETO_ID")
+	)
+	public List<Contribuinte> getCoordenadores() {
+		return coordenadores;
+	}
+	public void setCoordenadores(List<Contribuinte> coordenadores) {
+		this.coordenadores = coordenadores;
+	}
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable( name = "PROJETO_MEMBROS",
+		joinColumns = @JoinColumn( name = "CONTRIBUINTE_ID"), 
+		inverseJoinColumns = @JoinColumn (name = "PROJETO_ID")
+	)
+	public List<Contribuinte> getMembros() {
+		return membros;
+	}
+	public void setMembros(List<Contribuinte> membros) {
+		this.membros = membros;
+	}
+	
+	
 	@Column(name = "PROJETO_NOME", nullable = false)
 	public String getNome() {
 		return nome;
@@ -86,7 +105,7 @@ public class Projeto {
 	}
 	
 	@Lob
-	@Column(name = "PROJETO_DESCRICAO", nullable = false)
+	@Column(name = "PROJETO_DESCRICAO", nullable = true)
 	public String getDescricao() {
 		return descricao;
 	}
@@ -102,7 +121,7 @@ public class Projeto {
 		this.idProjeto = idProjeto;
 	}
 	
-	@Column(name = "PROJETO_FINACIAMENTO", nullable = false)
+	@Column(name = "PROJETO_FINACIAMENTO", nullable = true)
 	public String getFinanciamento() {
 		return financiamento;
 	}
@@ -125,7 +144,7 @@ public class Projeto {
 	}
 	
 	@Lob
-	@Column(name = "PROJETO_DESCRICAO_CURTA", nullable = false)
+	@Column(name = "PROJETO_DESCRICAO_CURTA")
 	public String getDescricaoCurta() {
 		return descricaoCurta;
 	}

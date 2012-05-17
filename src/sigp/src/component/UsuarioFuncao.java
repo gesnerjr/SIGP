@@ -6,7 +6,8 @@ public enum UsuarioFuncao {
 	DOUTORADO("Aluno de Doutorado"),
 	POSDOC("Aluno de Pos-Doc"),
 	PROFESSORE("Professor"),
-	EXTERNO("Colaborador Externo");
+	EXTERNO("Colaborador Externo"),
+	AUTOR("Autor");
 	
 	private String funcao;
 	

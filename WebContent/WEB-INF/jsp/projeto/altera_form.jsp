@@ -8,7 +8,7 @@
 
 
 
-<form method="post" action="/SIGP/projeto/altera">
+<form method="post" action="<c:url value='/projeto/altera'></c:url>">
 	<table>
 		<tr>
 			<td><fmt:message key="projeto.nome" /></td>
@@ -25,7 +25,31 @@
 		<tr>
 			<td><fmt:message key="projeto.site" /></td>
 			<td><input type="text" name="projeto.site" value="${projeto.site}" style="width:435px;"/></td>
-		</tr>		
+		</tr>
+		
+        <tr>
+            <td><fmt:message key="projeto.coordenadores" /></td>
+            <td>
+                <input id="coordinput" type="text">
+                <select id="selectcoord" name="idsCoordenadores[]" size="4" multiple style="display:none;"></select>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><fmt:message key="projeto.membros" /></td>
+            <td>
+                <input id="memberinput" type="text">
+                <select id="selectmember" name="idsMembros[]" size="4" multiple style="display:none;"></select>
+            </td>
+        </tr>
+        
+        <tr>
+            <td><fmt:message key="projeto.linhas" /></td>
+            <td>
+                <input id="linesinput" type="text">
+                <select id="selectlines" name="idsLinhas[]" size="4" multiple style="display:none;"></select>
+            </td>
+        </tr>				
 		<tr>
 			<td><fmt:message key="projeto.financiamento" /></td>
 			<td><input type="text" name="projeto.financiamento"  value="${projeto.financiamento}" style="width:435px;"/></td>

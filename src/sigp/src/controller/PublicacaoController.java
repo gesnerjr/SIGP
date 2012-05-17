@@ -10,10 +10,12 @@ import sigp.src.business.PublicacaoBusiness;
 import sigp.src.component.Contribuinte;
 import sigp.src.component.Projeto;
 import sigp.src.component.Publicacao;
+import sigp.src.component.Software;
 import sigp.src.component.TipoVeiculo;
 import sigp.src.dao.MembroDao;
 import sigp.src.dao.ProjetoDao;
 import sigp.src.dao.PublicacaoDao;
+import sigp.src.dao.SoftwareDao;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
@@ -29,15 +31,18 @@ public class PublicacaoController implements IHeaderController {
 	private final PublicacaoDao dao;
 	private final ProjetoDao pdao;
 	private final MembroDao cdao;
+	private final SoftwareDao sdao;
 	
     private Validator validator;
     
     private PublicacaoBusiness business;
 
+
 	public PublicacaoController(Result result, Validator validator, PublicacaoDao dao, ProjetoDao pdao,
-			MembroDao cdao, PublicacaoBusiness business) {
+			MembroDao cdao, SoftwareDao sdao ,PublicacaoBusiness business) {
 		this.result = result;
 		this.validator = validator;
+		this.sdao = sdao;
 		this.business = business;
 		this.dao = dao;
 		this.cdao = cdao;
@@ -64,12 +69,13 @@ public class PublicacaoController implements IHeaderController {
 		result.include("veiculos", TipoVeiculo.values());
 		result.include("todosprojetos", pdao.list());
 		result.include("todoscontribuintes", cdao.list());
+		result.include("todossoftware", sdao.list());
 	}
 
 	@Restricted
 	@Path("/publicacao/cria")
 	public void cria(final Publicacao publicacao,  final List<Long> idsProjetos,
-			final List<Long> idsContribuintes, UploadedFile pdf) {
+			final List<Long> idsContribuintes, final List<Long> idsSoftware,UploadedFile pdf) {
 		List<Projeto> projetos = new ArrayList<Projeto>();
 		if (idsProjetos != null) {
 			for (Long id : idsProjetos){
@@ -85,6 +91,14 @@ public class PublicacaoController implements IHeaderController {
 	    	}
     	}
     	publicacao.setContribuintes(contribuintes);
+    	
+    	List<Software> software = new ArrayList<Software>();
+    	if (idsSoftware != null) {
+	    	for (Long id : idsSoftware){
+	    		software.add(sdao.getSoftware(id));
+	    	}
+    	}
+    	publicacao.setSoftware(software);
 
 	    validator.validate(publicacao);
 	    validator.onErrorForwardTo(this).novo_form();
@@ -125,7 +139,11 @@ public class PublicacaoController implements IHeaderController {
 		else
 			result.include("publicacao", publicacao);
 		result.include("veiculos", TipoVeiculo.values());
+		result.include("lprojetos", publicacao.getProjetos());
+		result.include("lsoftware", publicacao.getSoftware());
+		result.include("lcontribuintes", publicacao.getContribuintes());
 		result.include("todosprojetos", pdao.list());
+		result.include("todossoftware", sdao.list());
 		result.include("todoscontribuintes", cdao.list());
 	}
 	
@@ -139,7 +157,7 @@ public class PublicacaoController implements IHeaderController {
 	@Restricted
 	@Path("/publicacao/altera")
 	public void altera(final Publicacao publicacao,  final List<Long> idsProjetos,
-			final List<Long> idsContribuintes) {
+			final List<Long> idsContribuintes, final List<Long> idsSoftware)  {
 		List<Projeto> projetos = new ArrayList<Projeto>();
 		if (idsProjetos != null) {
 			for (Long id : idsProjetos){
@@ -155,6 +173,14 @@ public class PublicacaoController implements IHeaderController {
 	    	}
     	}
     	publicacao.setContribuintes(contribuintes);
+    	
+    	List<Software> software = new ArrayList<Software>();
+    	if (idsSoftware != null) {
+	    	for (Long id : idsSoftware){
+	    		software.add(sdao.getSoftware(id));
+	    	}
+    	}
+    	publicacao.setSoftware(software);
 		
         validator.validate(publicacao);
         validator.onErrorForwardTo(this).altera_form(publicacao.getIdPublicacao());

@@ -18,31 +18,23 @@
 
    	<title><fmt:message key="titulo" /></title>
 
-<%-- 
-    <style type="text/css" title="The shiny, Web 2.0 version of 'Simplicity,' a pseudo-professional style-sheet." media="all">
-      @import "/SIGP/styles/simplicity-two-oh-three.css";
+    <style type="text/css" title="Main CSS style" media="all">
+      @import "<c:url value='/styles/ccsl.css'/>";
     </style>
---%>    
-    <style type="text/css" title="The shiny, Web 2.0 version of 'Simplicity,' a pseudo-professional style-sheet." media="all">
-      @import "/SIGP/styles/ccsl.css";
-    </style>
-    <!--[if IE]>
-    <style type="text/css" media="all">
-      @import "/SIGP/styles/ie-diff.css";
-    </style> 
-    <![endif]-->
     
-   	<link type="text/css" href="/SIGP/styles/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
-  	<link rel="stylesheet" href="/SIGP/styles/jquery.Jcrop.css" type="text/css" />
-	<script type="text/javascript" src="/SIGP/js/jquery-1.6.2.min.js"></script>
-	<script type="text/javascript" src="/SIGP/js/jquery-ui-1.8.16.custom.min.js"></script>
-	<script type="text/javascript" src="/SIGP/js/utils.js"></script>
-	<script type="text/javascript" src="/SIGP/js/jquery.form.js"></script>
-	<script type="text/javascript" src="/SIGP/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/SIGP/js/jquery.Jcrop.min.js"></script>
+   	<link type="text/css" href="<c:url value='/styles/ui-lightness/jquery-ui-1.8.16.custom.css'/>" rel="stylesheet" />
+  	<link rel="stylesheet" href="<c:url value='/styles/jquery.Jcrop.css'/>" type="text/css" />
+	<script type="text/javascript" src="<c:url value='/js/jquery-1.6.2.min.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery-ui-1.8.16.custom.min.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/utils.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery.form.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery.min.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery.Jcrop.min.js'/>"></script>
 	
+	
+    <script type="text/javascript" src="<c:url value='/js/jquery.tokeninput.js'/>"></script>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/styles/token-input.css'/>" />
 
-    <%-- <link rel="stylesheet" type="text/css" href="/SIGP/styles/print.css" media="print" /> --%>
     <link rel="shortcut icon" href="/favicon.png"  />
     <link rel="icon" href="/favicon.png" />
   </head>
@@ -56,10 +48,10 @@
 					<div class="item-list">
 						<ul>
 							<li><span class="i18n-link">
-								<a href="<c:url value="/lang/mudarLingua?lingua=en"></c:url>"><img src="/SIGP/images/flags/en.png" class="i18n-icon" width="16" height="12" alt="English"/></a>&nbsp;<a href="<c:url value="/lang/mudarLingua?lingua=en"></c:url>">English</a></span>
+								<a href="<c:url value="/lang/mudarLingua?lingua=en"></c:url>"><img src="<c:url value='/images/flags/en.png'/>" class="i18n-icon" width="16" height="12" alt="English"/></a>&nbsp;<a href="<c:url value="/lang/mudarLingua?lingua=en"></c:url>">English</a></span>
 							</li>
 							<li><span class="i18n-link">
-								<a href="<c:url value="/lang/mudarLingua?lingua=pt-br"></c:url>" class="active"><img src="/SIGP/images/flags/pt-br.png" class="i18n-icon" width="16" height="12" alt="Portuguese, Brazil"/></a>&nbsp;<a href="<c:url value="/lang/mudarLingua?lingua=pt-br"></c:url>" class="active">Português, Brasil</a></span>
+								<a href="<c:url value="/lang/mudarLingua?lingua=pt"></c:url>" class="active"><img src="<c:url value='/images/flags/pt-br.png'/>" class="i18n-icon" width="16" height="12" alt="Portuguese, Brazil"/></a>&nbsp;<a href="<c:url value="/lang/mudarLingua?lingua=pt"></c:url>" class="active">Português, Brasil</a></span>
 							</li>
 						</ul>
 					</div>
@@ -76,26 +68,31 @@
 			<ul>
 				<!--[if IE 6]><li></li><![endif]-->
 				<li <c:if test="${headername == 'index' or empty headername}">class="active"</c:if>>
-					<a href="/SIGP/" >Inicio</a>
+					<a href='<c:url value="/" />' >Inicio</a>
 				</li>
 				
 				<li <c:if test="${headername == 'linha'}">class="active"</c:if>>
-					<a href="/SIGP/linhadepesquisa/" ><fmt:message key="header.linhaspesquisa" /></a>
+					<a href="<c:url value='/linhadepesquisa/'/>" ><fmt:message key="header.linhaspesquisa" /></a>
 				</li>
+				
+				<li <c:if test="${headername == 'software'}">class="active"</c:if>>
+                    <a href="<c:url value='/software/'/>" ><fmt:message key="header.software" /></a>
+                </li>
+                
 				<%--
 				<li <c:if test="${headername == 'grupo'}">class="active"</c:if>>
-					<a href="/SIGP/grupo/"><fmt:message key="header.grupos" /></a>
+					<a href="<c:url value='/grupo/'/>"><fmt:message key="header.grupos" /></a>
 				</li>
 				--%>
 				<li <c:if test="${headername == 'projeto'}">class="active"</c:if>>
-					<a href="/SIGP/projeto/"><fmt:message key="header.projetos" /></a>
+					<a href="<c:url value='/projeto/'/>"><fmt:message key="header.projetos" /></a>
 				</li>
-				<%-- <li><a href="/SIGP/disciplina/"><fmt:message key="header.disciplinas" /></a></li> --%>
+				<%-- <li><a href="<c:url value='/disciplina/'/>"><fmt:message key="header.disciplinas" /></a></li> --%>
 				<li <c:if test="${headername == 'membro'}">class="active"</c:if>>
-					<a href="/SIGP/contribuinte/"><fmt:message key="header.contribuintes" /></a>
+					<a href="<c:url value='/contribuinte/'/>"><fmt:message key="header.contribuintes" /></a>
 				</li>
 				<li <c:if test="${headername == 'publicacao'}">class="active"</c:if>>
-					<a href="/SIGP/publicacao/"><fmt:message key="header.publicacoes" /></a>
+					<a href="<c:url value='/publicacao/'/>"><fmt:message key="header.publicacoes" /></a>
 				</li>
 			</ul>
 		</div>

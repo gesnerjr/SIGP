@@ -23,14 +23,23 @@
 
 	<!-- Projetos -->
 	<div>
-		<b><fmt:message key="contribuinte.projetosparticipou" /></b><br />
+		<b><fmt:message key="contribuinte.projetoscoordenador" /></b><br />
 		<ul>
-		<c:forEach items="${contribuinte.participacoes}" var="participacao">
-			<li><a href="/SIGP/projeto/ver/${participacao.projeto.idProjeto}">${participacao.projeto.nome}</a></li>
+		<c:forEach items="${contribuinte.projetosCoordenador}" var="p">
+			<li><a href="/SIGP/projeto/ver/${p.idProjeto}">${p.nome}</a></li>
 		</c:forEach>
 		</ul>
 		<br />
 	</div>
+	<div>
+        <b><fmt:message key="contribuinte.projetosmembro" /></b><br />
+        <ul>
+        <c:forEach items="${contribuinte.projetosMembro}" var="p">
+            <li><a href="/SIGP/projeto/ver/${p.idProjeto}">${p.nome}</a></li>
+        </c:forEach>
+        </ul>
+        <br />
+    </div>
 	
 	<!-- Publicacao -->
 	<div>
