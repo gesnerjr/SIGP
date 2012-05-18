@@ -66,7 +66,7 @@ public class UsuarioController implements IHeaderController {
 	}
 
 	//@Restricted
-	@Path("/login/novoUsuario")
+	@Path("/login/add")
 	public void novo_form() {
 	}
 
