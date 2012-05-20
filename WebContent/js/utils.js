@@ -5,6 +5,7 @@ $(document).ready(function()
         changeMonth: true,
         changeYear: true,
         showButtonPanel: true,
+        currentText: "Current Month",
 
         onClose: function(dateText, inst) {
             var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
@@ -24,3 +25,15 @@ $(document).ready(function()
         });
     });
 });
+
+(function(){
+    var original_gotoToday = $.datepicker._gotoToday;
+
+    $.datepicker._gotoToday = function(id) {
+        var target = $(id),
+            inst = this._getInst(target[0]);
+
+        original_gotoToday.call(this, id);
+        this._selectDate(id, this._formatDate(inst, inst.selectedDay, inst.drawMonth, inst.drawYear));
+    }
+})();
