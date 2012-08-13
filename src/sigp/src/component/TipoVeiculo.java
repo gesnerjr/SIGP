@@ -6,9 +6,14 @@ public enum TipoVeiculo {
 	RESUMO("Artigo Resumido em Conferência"),
 	CAPITULO("Capítulo de Livro"),
 	LIVRO("Livro"),
-	TESE("Tese"),
-	DISSERTACAO("Dissertação"),
-	TCC("Trabalho de Conclusão de Curso");
+	TESE("Tese de Doutorado"),
+	DISSERTACAO("Dissertação de Mestrado"),
+	TCC("Trabalho de Conclusão de Curso"),
+	WORKSHOP("Artigo completo em Workshop"),
+	WORKSHOP_RESUMO("Artigo Resumido em Workshop"),
+	REPORT("Relatório Técnico"),
+	MAGAZINE("Revista"),
+	OTHER("Outro");
 	
 	private String tipoVeiculo;
 	

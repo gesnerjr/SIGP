@@ -1,22 +1,23 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="pagetitle" value="${publicacao.titulo}" />
 <%@ include file="/header.jsp" %> 
 
-	<c:choose>
-		<c:when test="${userIsLogged}">
-    		<div id="side-contents">
-    			<fmt:message key="misc.acoes"></fmt:message>
-    			<hr />
-				<a href="/SIGP/publicacao/alterar/${publicacao.idPublicacao}"><fmt:message key="alterar" /></a><br />
-				<a href="/SIGP/publicacao/apagar/${publicacao.idPublicacao}"><fmt:message key="apagar" /></a>
-    		</div>
-   		</c:when>
-   		<c:otherwise>
-   			<div id="side-contents" class="hidden"></div>
-   		</c:otherwise>
-	</c:choose>
-    
-    <div id="contents">
-        <h2 class="top">"${publicacao.titulo}"</h2>
+<!----------- TITLE ---------->
+    <div id="page-headline">
+        
+        <div id="page-headline-inner">  
+            <div id="page-title">
+                <h2>"${publicacao.titulo}"</h2>
+            </div><!-- end page-title -->           
+        </div><!-- end page-headline-inner -->
+        <div class="separator"></div>   
+    </div><!-- end page-headline -->        
 
+<!----------- CORPO ---------->
+    <div id="wrapper">
+
+        <div id="content" class="cont-left">       
+        
 <p>
 	<b><fmt:message key="publicacao.resumo" /></b> <br /> ${publicacao.resumo}
 </p>
@@ -39,13 +40,15 @@
 </p>
 
 
-<p><b><fmt:message key="publicacao.projetos" /></b></p>
+<h3><fmt:message key="publicacao.projetos" /></h3>
+<p>
 <ul>
 	<c:forEach items="${publicacao.projetos}" var="projeto">
 		<li><a href="/SIGP/projeto/ver/${projeto.idProjeto}">${projeto.nome}</a>
 		</li>
 	</c:forEach>
 </ul>
+</p>
 
 <p>
 	<b><fmt:message key="publicacao.link" /></b> <br /> ${publicacao.linkEditora}

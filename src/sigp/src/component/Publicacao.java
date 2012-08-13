@@ -32,30 +32,51 @@ public class Publicacao {
 	private String titulo;
 	
 	private String resumo;
-	
 	private String paperAbstract;
 	
-	private String bibtex;
-	
-	private String linkEditora;
-	
-	@NotNull(message = "Publicação precisa ter um veículo válido.")
-	private TipoVeiculo veiculoTipo;
-	
-	private String veiculoNome;
 	
 	@NotNull(message = "Publicação precisa ter uma data válida.")
 	private Integer mes;
-	
 	@NotNull(message = "Publicação precisa ter uma data válida.")
 	private Integer ano;
+	
+	@NotNull(message = "Publicação precisa ter um status.")
+	private PublicacaoStatus status;
+	
+	private String DOI;
+	
+
+	private String bibtex;
+	
+	/* Publisher */
+	private String publisherName;
+	private String publisherCity;
+	private String linkEditora;
+	
+	/* Veiculo */
+	@NotNull(message = "Publicação precisa ter um veículo válido.")
+	private TipoVeiculo veiculoTipo;
+	private String veiculoNome;
+	private Qualis qualis;
+	private String volume;
+	private String series;
+	private String startPage;
+	private String endPage;
+	private String fascicle;
+	private String isbn;
+	private String issn;
+	
+	
 	
 	
 	private List<Projeto> projetos = new ArrayList<Projeto>();
 	private List<Software> software = new ArrayList<Software>();
 	private List<Contribuinte> contribuintes = new ArrayList<Contribuinte>();
+	private List<LinhaPesquisa> linhas = new ArrayList<LinhaPesquisa>();
 
+	/* Publication Files */
 	private Boolean pdf;
+	private Boolean presentation;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable( name = "PROJETO_PUBLICACAO",
@@ -67,6 +88,19 @@ public class Publicacao {
 
 	public void setProjetos(List<Projeto> projetos) {
 		this.projetos = projetos;
+	}
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable( name = "LINHA_PUBLICACAO",
+		joinColumns = @JoinColumn( name = "PUBLICACAO_ID"), 
+		inverseJoinColumns = @JoinColumn (name = "LINHA_ID")
+	)
+	public List<LinhaPesquisa> getLinhas() {
+		return linhas;
+	}
+
+	public void setLinhas(List<LinhaPesquisa> linhas) {
+		this.linhas = linhas;
 	}
 
 
@@ -215,6 +249,127 @@ public class Publicacao {
 
 	public void setLinkEditora(String linkEditora) {
 		this.linkEditora = linkEditora;
+	}
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "PUBLICACAO_STATUS")
+	public PublicacaoStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(PublicacaoStatus status) {
+		this.status = status;
+	}
+
+	
+	@Column(name = "PUBLICACAO_DOI", length= 2048)
+	public String getDOI() {
+		return DOI;
+	}
+
+	public void setDOI(String dOI) {
+		DOI = dOI;
+	}
+
+	@Lob
+	@Column(name = "PUBLICACAO_PUBLISHER_NAME")
+	public String getPublisherName() {
+		return publisherName;
+	}
+
+	public void setPublisherName(String publisherName) {
+		this.publisherName = publisherName;
+	}
+
+	@Lob
+	@Column(name = "PUBLICACAO_PUBLISHER_CITY")
+	public String getPublisherCity() {
+		return publisherCity;
+	}
+
+	public void setPublisherCity(String publisherCity) {
+		this.publisherCity = publisherCity;
+	}
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "PUBLICACAO_QUALIS")
+	public Qualis getQualis() {
+		return qualis;
+	}
+
+	public void setQualis(Qualis qualis) {
+		this.qualis = qualis;
+	}
+
+	@Column(name = "PUBLICACAO_VOLUME", length= 128)
+	public String getVolume() {
+		return volume;
+	}
+
+	public void setVolume(String volume) {
+		this.volume = volume;
+	}
+
+	@Column(name = "PUBLICACAO_SERIES", length= 128)
+	public String getSeries() {
+		return series;
+	}
+
+	public void setSeries(String series) {
+		this.series = series;
+	}
+
+	@Column(name = "PUBLICACAO_START_PAGE")
+	public String getStartPage() {
+		return startPage;
+	}
+
+	public void setStartPage(String startPage) {
+		this.startPage = startPage;
+	}
+	
+	@Column(name = "PUBLICACAO_END_PAGE")
+	public String getEndPage() {
+		return endPage;
+	}
+
+	public void setEndPage(String endPage) {
+		this.endPage = endPage;
+	}
+
+	@Column(name = "PUBLICACAO_FASCICLE")
+	public String getFascicle() {
+		return fascicle;
+	}
+
+	public void setFascicle(String fascicle) {
+		this.fascicle = fascicle;
+	}
+
+	@Column(name = "PUBLICACAO_ISBN")
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	@Column(name = "PUBLICACAO_ISSN")
+	public String getIssn() {
+		return issn;
+	}
+
+	public void setIssn(String issn) {
+		this.issn = issn;
+	}
+
+	public Boolean getPresentation() {
+		return presentation;
+	}
+
+	public void setPresentation(Boolean presentation) {
+		this.presentation = presentation;
 	}
 
 }
