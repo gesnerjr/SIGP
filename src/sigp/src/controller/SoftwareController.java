@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sigp.src.annotations.Restricted;
+import sigp.src.business.Utils;
 import sigp.src.component.Contribuinte;
 import sigp.src.component.Licenca;
 import sigp.src.component.LinhaPesquisa;
@@ -52,16 +53,16 @@ public class SoftwareController implements IHeaderController {
 
 	@Path("/software/")
 	public void index() {
-		result.include("software", dao.list());
+		result.include("softwarelist", dao.list());
 	}
 	
 	@Path("/software/clist")
 	public void clean_list() {
-		result.include("software", dao.list());
+		result.include("softwarelist", dao.list());
 	}
 
 	@Restricted
-	@Path("/software/add")
+	@Path({"/software/add", "/software/novo"})
 	public void add() {
 		result.include("licencas", Licenca.values());
 		result.include("todaslinhas", ldao.list());
@@ -109,12 +110,13 @@ public class SoftwareController implements IHeaderController {
 
 	    validator.validate(software);
 	    validator.onErrorForwardTo(this).add();
+	    software.setDescricao(Utils.nl2br(software.getDescricao().trim()));
 		dao.save(software);
 		
 		result.redirectTo(SoftwareController.class).index();
 	}
 
-	@Path("/software/view/{id}")
+	@Path({"/software/view/{id}", "/software/ver/{id}"})
 	public void view(Long id) {
 		Software software = dao.getSoftware(id);
 		if (software == null)
@@ -124,17 +126,17 @@ public class SoftwareController implements IHeaderController {
 	}
 	
 	@Restricted
-	@Path("/software/edit/{id}")
+	@Path({"/software/edit/{id}", "/software/alterar/{id}"})
 	public void edit(Long id) {
 		Software software = dao.getSoftware(id);
 		if (software == null)
 			result.redirectTo(SoftwareController.class).index();
 		else
-			result.include("publicacao", software);
+			result.include("software", software);
 		// for ajax
-		result.include("llinhas", software.getProjetos());
+		result.include("llinhas", software.getLinhas());
 		result.include("lprojetos", software.getProjetos());
-		result.include("lpublicacoes", software.getProjetos());
+		result.include("lpublicacoes", software.getPublicacoes());
 		result.include("lcontribuintes", software.getContribuintes());
 		result.include("licencas", Licenca.values());
 		result.include("todaslinhas", ldao.list());
@@ -173,6 +175,7 @@ public class SoftwareController implements IHeaderController {
 		
         validator.validate(software);
         validator.onErrorForwardTo(this).edit(software.getIdSoftware());
+        software.setDescricao(Utils.nl2br(software.getDescricao().trim()));
 		dao.update(software);
 		result.redirectTo(SoftwareController.class).index();
 	}
