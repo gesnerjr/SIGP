@@ -1,3 +1,4 @@
 /WebContent/WEB-INF/classes
 /WebContent/SIGP.zip
 *.pdf
+src/hibernate.cfg.xml
