@@ -1,0 +1,67 @@
+h4 {
+    color:#323232;
+    font-size: 20px; 
+    font-weight: normal;
+}
+
+h4.view {
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+.sigp {
+    width:610px;
+}
+
+.spacer {
+	margin: 25px 0 10px 0;
+}
+
+#page-title h5 {
+	margin-bottom:-3px;
+}
+
+.sigp-button {
+    font-family: Bebas, Arial, sans-serif;
+    background-color: #4b7bd1;
+    width:80px;
+    height: 33px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #f7f7f7;
+    font-size: 20px;
+    line-height: 20px;  
+    -webkit-transition: background-color .2s linear;
+    -moz-transition: background-color .2s linear;
+    -o-transition: background-color .2s linear;
+    -ms-transition: background-color .2s linear;
+    transition: background-color .2s linear;
+}
+
+.sigp-button:hover {
+    background-color: #323232;
+}
+
+#admin-box h3 {
+    font-size: 20px;
+    color: #f7f7f7;
+    line-height: 15px;
+    padding: 10px;
+    border-left: 4px solid #ff7400;
+    background: #a60000;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+select.sigp {
+	width:628px;
+}
+
+#language-float{
+	z-index: 99999;
+	float: right;
+	position: relative;
+	right: 0;
+	top: 0;
+}
