@@ -6,7 +6,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title><fmt:message key="titulo" /></title>
+    <title><c:if test="${not empty pagetitle}">${pagetitle} | </c:if><fmt:message key="titulo" /></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Language" content="en-GB" />
     <meta name="author" content="Marco Aurélio Gerosa" />
@@ -19,10 +19,14 @@
 
 	<!--imports the main css file-->
 	<link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/css/style.css'></c:url>" />
+	<!--imports custom mods css file-->
+    <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/css/custom.css'></c:url>" />
 	<!--imports prettyPhoto css file-->
 	<link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/css/prettyPhoto.css'></c:url>" />
 	<!--imports Nivo Slider css file-->
 	<link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/css/nivo-slider.css'></c:url>" />
+	<!--imports jQuery UI css file-->
+    <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/css/jquery-ui-1.8.16.custom.css'></c:url>" />
     <!--imports JCrop css file-->
     <link rel="stylesheet" href="<c:url value='/css/jquery.Jcrop.css'/>" type="text/css" />
     <!--imports jQuery Token Input css file-->    
@@ -68,15 +72,30 @@
 </head>
 
 <body>
+
+
 <!----------- HEADER ---------->
     <div id="header" class="pattern-1">
         <div id="header-inner">
+			<div id="language-float">
+			<span class="i18n-link">
+			    <a href="<c:url value="/lang/mudarLingua?lingua=en"></c:url>">
+			      <img src="<c:url value='/images/flags/en.png'/>" class="i18n-icon" width="16" height="12" alt="English"/>
+			    </a><%-- <a href="<c:url value="/lang/mudarLingua?lingua=en"></c:url>">English</a> --%>
+			</span>&nbsp;&nbsp;
+			<span class="i18n-link">
+			    <a href="<c:url value="/lang/mudarLingua?lingua=pt"></c:url>" class="active">
+			      <img src="<c:url value='/images/flags/pt-br.png'/>" class="i18n-icon" width="16" height="12" alt="Portuguese, Brazil"/>
+			    </a><%-- &nbsp;<a href="<c:url value="/lang/mudarLingua?lingua=pt"></c:url>" class="active">Português, Brasil</a> --%>
+			</span> 
+			</div>
             <div id="logo">
                 <img src="<c:url value='/images/lapessc_small.gif'></c:url>" alt="LAPPESC" /><br />
                 <div id="title">
                     <h1><nobr>Software Engineering &</nobr> <nobr>Collaborative Systems</nobr> <nobr>Research Lab</nobr></h1>
                 </div><!-- end title -->
             </div><!-- end logo -->
+            
 
             <ul id="navigation">
                 <li>
@@ -86,15 +105,15 @@
                 </li>
 
                 <li>
-                    <a href="<c:url value='/linhadepesquisa/'></c:url>" <c:if test="${headername == 'linha'}">class="active-nav"</c:if>>
+                    <a href="<c:url value='/lines/'></c:url>" <c:if test="${headername == 'linha'}">class="active-nav"</c:if>>
                     <fmt:message key="header.linhaspesquisa" />
                     </a><br /><br />
                     <ul>
-                        <li><a href="research_lines.html">
+                        <li><a href="<c:url value='/lines/'></c:url>">
                             Current
                             </a>
                         </li>
-                        <li><a href="previous_research_lines.html">
+                        <li><a href="<c:url value='/plines/'></c:url>">
                             Previous
                             </a>
                         </li>
@@ -136,24 +155,8 @@
         </div><!-- end header-inner -->
     </div><!-- end header -->
     
-
-<%-- 
-<ul>
-	<li><span class="i18n-link">
-		<a href="<c:url value="/lang/mudarLingua?lingua=en"></c:url>">
-		  <img src="<c:url value='/images/flags/en.png'/>" class="i18n-icon" width="16" height="12" alt="English"/>
-		</a>&nbsp;
-		<a href="<c:url value="/lang/mudarLingua?lingua=en"></c:url>">English</a>
-		</span>
-	</li>
-	<li><span class="i18n-link">
-		<a href="<c:url value="/lang/mudarLingua?lingua=pt"></c:url>" class="active">
-		  <img src="<c:url value='/images/flags/pt-br.png'/>" class="i18n-icon" width="16" height="12" alt="Portuguese, Brazil"/>
-	    </a>&nbsp;
-	    <a href="<c:url value="/lang/mudarLingua?lingua=pt"></c:url>" class="active">Português, Brasil</a></span>
-	</li>
-</ul>
 						
+<%-- 
 <span id="logged">
 	<a href="<c:url value="/login/"></c:url>" id="login_buttom"><fmt:message key="header.login" /></a>
 </span>

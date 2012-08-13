@@ -1,4 +1,4 @@
-	<div class="sidebar-box">
+	<div id="admin-box" class="sidebar-box">
         <h3>Admin Box</h3>
         <ul class="sidebar-menu arrows">
             <li><a href="<c:url value='/login/add'></c:url>">Add new user</a></li>

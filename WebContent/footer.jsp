@@ -3,8 +3,8 @@
         <!-- Sidebar Content -->    
         <div id="sidebar" class="sb-right">
 
-            <c:if test="${userIsLogged}">        
             <%@ include file="/admin-box.jsp" %>
+            <c:if test="${userIsLogged}">        
             </c:if>            
         
             <div class="sidebar-box">
@@ -30,7 +30,7 @@
                 <h3>Highlights</h3>
                 <ul class="latest-blog-posts">
                     <li>
-                        <img src="images/sbsc.jpg" alt="Brazilian Symposium on Collaborative Systems"/>
+                        <img src="<c:url value='/images/sbsc.jpg'></c:url>" alt="Brazilian Symposium on Collaborative Systems"/>
                         <div class="post-details">
                             <h5><a href="http://sws2012.ime.usp.br/sbsc/index.php" target=_blank>SBSC 2012</a></h5>
                             <p>This year, we are organizing in S&atilde;o Paulo the IX Brazilian Symposium on Collaborative Systems. It will occur from October, 15th to 18th. More details about the event in its <a href=""http://sws2012.ime.usp.br/sbsc/index.php" target=_blank>website</a>. </p>
