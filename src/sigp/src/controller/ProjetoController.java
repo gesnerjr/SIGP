@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sigp.src.annotations.Restricted;
+import sigp.src.business.Utils;
 import sigp.src.component.Contribuinte;
 import sigp.src.component.LinhaPesquisa;
 import sigp.src.component.Projeto;
@@ -38,13 +39,15 @@ public class ProjetoController implements IHeaderController {
 	}
 
     @Path({"/projeto/", "/project"})
+    public void index_estatico(){ }
+    
     public void index() {
         result.include("projetos", dao.list());
     }
 
     @Restricted
     @Path({"/projeto/novo", "/project/new"})
-    public void novo_form() {
+    public void add() {
         result.include("projetos", dao.list());
         result.include("todoscontribuintes", cdao.list());
         result.include("todaslinhas", ldao.list());
@@ -80,18 +83,16 @@ public class ProjetoController implements IHeaderController {
     	projeto.setLinhasDePesquisa(linhas);
     	
         validator.validate(projeto);
-        validator.onErrorForwardTo(this).novo_form();
-        projeto.setDescricao(nl2br(projeto.getDescricao()));
+        validator.onErrorForwardTo(this).add();
+        projeto.setDescricao(Utils.nl2br(projeto.getDescricao().trim()));
         dao.save(projeto);
         result.redirectTo(ProjetoController.class).index();
     }
     
-    private String nl2br(String msg){
-    	return msg.replace("\n","<br>");
-    }
+    
     
     @Path({"/projeto/ver/{id}", "/project/view/{id}"})
-    public void visualiza(Long id) {
+    public void view(Long id) {
         Projeto projeto = dao.getProjeto(id);
         if (projeto == null)
             result.redirectTo(ProjetoController.class).index();
@@ -101,7 +102,7 @@ public class ProjetoController implements IHeaderController {
 
     @Restricted
     @Path({"/projeto/alterar/{id}", "/project/edit/{id}"})
-    public void altera_form(Long id) {
+    public void edit(Long id) {
         Projeto projeto = dao.getProjeto(id);
         if (projeto == null){
             result.redirectTo(ProjetoController.class).index();
@@ -145,8 +146,8 @@ public class ProjetoController implements IHeaderController {
     	projeto.setLinhasDePesquisa(linhas);
     	
         validator.validate(projeto);
-        validator.onErrorForwardTo(this).altera_form(projeto.getIdProjeto());
-        projeto.setDescricao(nl2br(projeto.getDescricao()));
+        validator.onErrorForwardTo(this).edit(projeto.getIdProjeto());
+        projeto.setDescricao(Utils.nl2br(projeto.getDescricao().trim()));
         dao.update(projeto);
         result.redirectTo(ProjetoController.class).index();
     }
