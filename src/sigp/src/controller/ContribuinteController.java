@@ -139,17 +139,18 @@ public class ContribuinteController implements IHeaderController{
         validator.validate(contribuinte);
         Usuario user = udao.getUsuario(idUsuario);
         if (user == null) {
-            validator.add(new ValidationMessage("usuário",
-                    "não existe"));
+            //validator.add(new ValidationMessage("usuário", "não existe"));
         }
         
         validator.onErrorForwardTo(this).altera_form(contribuinte.getIdContribuinte());
-        contribuinte.setUsuario(user);
-        user.setContribuinte(contribuinte);
-        
-        udao.update(user);        
         dao.update(contribuinte);
-
+        
+        if (user != null) {
+        	user.setContribuinte(contribuinte);
+            contribuinte.setUsuario(user);
+        	udao.save(user);
+        }
+        
         if (file == null){
         	result.redirectTo(ContribuinteController.class).index();
         } else {

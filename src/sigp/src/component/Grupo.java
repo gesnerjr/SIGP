@@ -69,7 +69,7 @@ public class Grupo {
 	}
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "GRUPO_LINHAP", joinColumns = { @JoinColumn(name = "GRUPO_ID") }, inverseJoinColumns = { @JoinColumn(name = "LINHAP_ID") })
+	@JoinTable(name = "GRUPO_LINHA", joinColumns = { @JoinColumn(name = "GRUPO_ID") }, inverseJoinColumns = { @JoinColumn(name = "LINHA_ID") })
 	public List<LinhaPesquisa> getPesquisas() {
 		return pesquisas;
 	}

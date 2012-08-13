@@ -135,7 +135,7 @@ public class ProjetoControllerTest {
     @Test
     public void testInfoProjeto() {
         Projeto projeto = dao.getProjeto(1L);
-        controller.visualiza(1L);
+        controller.view(1L);
         verify(result).include("projeto", projeto);
     }
 

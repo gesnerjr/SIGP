@@ -67,7 +67,7 @@ public class RelacaoPesquisa {
 
     
     @ManyToOne
-    @JoinColumn(name = "LINHAP_ID", nullable = false)
+    @JoinColumn(name = "LINHA_ID", nullable = false)
     public LinhaPesquisa getLinha() {
     	return linha;
     }
