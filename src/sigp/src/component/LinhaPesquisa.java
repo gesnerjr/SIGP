@@ -21,7 +21,7 @@ import br.com.caelum.vraptor.Resource;
 
 @Entity
 @Resource
-@Table(name = "LINHAP")
+@Table(name = "LINHA")
 public class LinhaPesquisa {
     
 	private Long idPesquisa;
@@ -35,6 +35,8 @@ public class LinhaPesquisa {
 	private List<Grupo> grupos = new ArrayList<Grupo>();
 	// Relacao = {Contribuinte, Linha de Pesquisa} 
 	private List<RelacaoPesquisa> relacoes = new ArrayList<RelacaoPesquisa>();
+	
+	private List<Publicacao> publicacoes = new ArrayList<Publicacao>();
 	
 	/* 
 	 * Relacoes para a propria entidade precisam ser declaradas sob os
@@ -59,6 +61,14 @@ public class LinhaPesquisa {
 	}
 	public void setRelacoes(List<RelacaoPesquisa> relacoes) {
 		this.relacoes = relacoes;
+	}
+	
+	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "linhas")
+	public List<Publicacao> getPublicacoes() {
+		return publicacoes;
+	}
+	public void setPublicacoes(List<Publicacao> publicacoes) {
+		this.publicacoes = publicacoes;
 	}
 
 	@ManyToMany
@@ -91,8 +101,8 @@ public class LinhaPesquisa {
 	
 
 	@ManyToMany()
-	@JoinTable( name = "LINHAP_PROJETO",
-		joinColumns = @JoinColumn( name = "LINHAP_ID"), 
+	@JoinTable( name = "LINHA_PROJETO",
+		joinColumns = @JoinColumn( name = "LINHA_ID"), 
 		inverseJoinColumns = @JoinColumn (name = "PROJETO_ID")
 	)
 	public List<Projeto> getProjetos() {
@@ -113,7 +123,7 @@ public class LinhaPesquisa {
 	
 	@Id
 	@GeneratedValue 
-	@Column(name = "LINHAP_ID")
+	@Column(name = "LINHA_ID")
 	public Long getIdPesquisa() {
 		return idPesquisa;
 	}
@@ -122,7 +132,7 @@ public class LinhaPesquisa {
 	}
 	
 	
-	@Column(name = "LINHAP_NOME", nullable = false)
+	@Column(name = "LINHA_NOME", nullable = false)
 	public String getNome() {
 		return nome;
 	}
@@ -131,7 +141,7 @@ public class LinhaPesquisa {
 	}
 	
 	@Lob
-	@Column(name = "LINHAP_DESC", nullable = false)
+	@Column(name = "LINHA_DESC", nullable = false)
 	public String getDescricao() {
 		return descricao;
 	}

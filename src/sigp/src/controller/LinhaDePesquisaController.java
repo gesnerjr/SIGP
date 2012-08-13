@@ -1,11 +1,14 @@
 package sigp.src.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import sigp.src.annotations.Restricted;
 import sigp.src.component.LinhaPesquisa;
 import sigp.src.component.Projeto;
+import sigp.src.component.Publicacao;
 import sigp.src.dao.LinhaDePesquisaDao;
 import sigp.src.dao.ProjetoDao;
 import br.com.caelum.vraptor.Path;
@@ -32,7 +35,12 @@ public class LinhaDePesquisaController implements IHeaderController {
 		return LinhaDePesquisaController.HEADER;
 	}
 
-	@Path("/linhadepesquisa/")
+	@Path({"/lines/", "/lines"})
+	public void index_estatico(){}
+	
+	@Path({"/plines/", "/plines"})
+	public void previous_lines(){}
+
 	public void index() {
 		result.include("linhasdepesquisa", dao.list());        
 	}
@@ -42,14 +50,13 @@ public class LinhaDePesquisaController implements IHeaderController {
 	}
 
 	@Restricted
-	@Path("/linhadepesquisa/novo")
-	public void novalinhadepesquisa() {
-		result.include("linhasdepesquisa", dao.list());
-		result.include("todosprojetos", pdao.list());
+	@Path({"/lines/add", "/lines/add/*"})
+	public void add() {
+		result.include("todaslinhas", dao.list());
 	}
 
 	@Restricted
-	@Path("/linhadepesquisa/inserir")   
+	@Path("/lines/create")   
 	public void inserir(final LinhaPesquisa linhapesquisa, final List<Long> idsProjetos, 
 			final List<Long> idsLinhasPai){
 		if (idsProjetos != null) {
@@ -70,25 +77,25 @@ public class LinhaDePesquisaController implements IHeaderController {
 		}
 
 		validator.validate(linhapesquisa);
-		validator.onErrorForwardTo(this).novalinhadepesquisa();
+		validator.onErrorForwardTo(this).add();
 		dao.save(linhapesquisa);
 		result.redirectTo(this).index();
 	}
 
 	@Restricted
-	@Path("/linhadepesquisa/alterar/{idPesquisa}")
+	@Path("/lines/edit/{idPesquisa}")
 	public void editar(Long idPesquisa) {
 		LinhaPesquisa linhapesquisa = dao.getLinhaPesquisa(idPesquisa);
 		if (linhapesquisa == null)
 			result.redirectTo(this).index();
 		else
 			result.include("linhapesquisa", linhapesquisa);
-		result.include("linhasdepesquisa", dao.list());  
-		result.include("todosprojetos", pdao.list());
+		result.include("llinhaspai", linhapesquisa.getLinhasPai());
+		result.include("todaslinhas", dao.list());  
 	}
 
 	@Restricted
-	@Path("/linhadepesquisa/altera")
+	@Path("/lines/update")
 	public void altera(final LinhaPesquisa linhapesquisa, final List<Long> idsLinhasPai,
 			final List<Long> idsProjetos) {
 		validator.validate(linhapesquisa);
@@ -117,7 +124,7 @@ public class LinhaDePesquisaController implements IHeaderController {
 	}
 
 	@Restricted
-	@Path("/linhadepesquisa/apagar/{idPesquisa}")
+	@Path("/lines/del/{idPesquisa}")
 	public void remove(Long idPesquisa) {
 		LinhaPesquisa linhapesquisa = dao.getLinhaPesquisa(idPesquisa);
 		if (linhapesquisa != null)
@@ -125,12 +132,21 @@ public class LinhaDePesquisaController implements IHeaderController {
 		result.redirectTo(this).index();
 	}
 
-	@Path("/linhadepesquisa/ver/{idPesquisa}")
+	@Path("/lines/view/{idPesquisa}")
 	public void visualiza(Long idPesquisa) {
 		LinhaPesquisa linhapesquisa = dao.getLinhaPesquisa(idPesquisa);
-		if (linhapesquisa == null)
+		if (linhapesquisa == null) {
 			result.redirectTo(this).index();
-		else
+		} else {
 			result.include("linhapesquisa", linhapesquisa);
+			Map<Integer, List<Publicacao>> pubmap = new HashMap<Integer, List<Publicacao>>();
+			for (Publicacao p: linhapesquisa.getPublicacoes()){
+				if (!pubmap.containsKey(p.getAno())){
+					pubmap.put(p.getAno(), new ArrayList<Publicacao>());
+				}
+				pubmap.get(p.getAno()).add(p);
+			}
+			result.include("pubmap", pubmap);
+		}
 	}
 }

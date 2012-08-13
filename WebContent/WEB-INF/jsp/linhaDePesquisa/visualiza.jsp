@@ -1,21 +1,22 @@
 <%@ include file="/header.jsp" %> 
 
-	<c:choose>
-		<c:when test="${userIsLogged}">
-    		<div id="side-contents">
-    			<fmt:message key="misc.acoes"></fmt:message>
-    			<hr />
-				<a href="/SIGP/linhadepesquisa/alterar/${linhapesquisa.idPesquisa}"><fmt:message key="alterar" /></a><br />
-				<a href="/SIGP/linhadepesquisa/apagar/${linhapesquisa.idPesquisa}"><fmt:message key="apagar" /></a>
-    		</div>
-   		</c:when>
-   		<c:otherwise>
-   			<div id="side-contents" class="hidden"></div>
-   		</c:otherwise>
-	</c:choose>
+<!----------- TITLE ---------->
+    <div id="page-headline">
     
-    <div id="contents">
-        <h2 class="top">${linhapesquisa.nome}</h2>
+        <div id="page-headline-inner">  
+            <div id="page-title">
+                <h2><fmt:message key="header.linhaspesquisa"/></h2>
+            </div><!-- end page-title -->           
+        </div><!-- end page-headline-inner -->
+        <div class="separator"></div>   
+    </div><!-- end page-headline -->        
+
+<!----------- CORPO ---------->
+    <div id="wrapper">
+
+        <div id="content" class="cont-left">
+    
+        <h2>${linhapesquisa.nome}</h2>
 <p>
 	<b>Descrição:</b><br />
 	${linhapesquisa.descricao}
@@ -45,11 +46,25 @@
 		</li>
 	</c:forEach>
 </ul>
+
+<p>Publicações:</p>
+<c:forEach items="${pubmap}" var="ano">
+<h3>${ano.key}</h3>
+<ul class="arrows">
+    <c:forEach items="${ano.value}" var="p">
+    <li>${p.titulo}</li>
+    </c:forEach>
+</ul>
+<br />
+</c:forEach>
+
+
 <!-- <p>Contribuintes:</p> -->
 <%-- <ul><c:forEach items="${linhapesquisa.contribuintes}" var="contribuinte"> --%>
 <%-- 	<li><a href="/SIGP/contribuinte/ver/${contribuinte.idContribuinte}">${contribuinte.nome}</a></li> --%>
 <%-- </c:forEach></ul> --%>
 
-    </div> <!-- id=contents -->
+
+        </div><!-- end content -->
 
 <%@ include file="/footer.jsp" %> 
