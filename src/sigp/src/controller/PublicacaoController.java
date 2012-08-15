@@ -159,7 +159,7 @@ public class PublicacaoController implements IHeaderController {
 		
 		if (pdf != null){
 	    	try {
-				business.salvarPdf(publicacao.getIdPublicacao(), pdf);
+				business.savePdf(publicacao.getIdPublicacao(), pdf);
 			} catch (IOException e) {
 				publicacao.setPdf(false);
 			}
@@ -181,6 +181,19 @@ public class PublicacaoController implements IHeaderController {
 	@Path("/publicacao/pdf/{id}")
 	public File pdf(Long id) {
 		return business.downloadPdf(id);
+	}
+	
+	@Path("/publicacao/presentation/{id}")
+	public File getPresentation(Long id) {
+		return business.downloadPresentation(id);
+	}
+	
+	@Path("/publicacao/getFile/{id}")
+	public File getFile(Long id, String f){
+		if (f == null || f.equals("")){
+			return null;
+		}
+		return business.downloadFile(id, f);
 	}
 
 	@Restricted
@@ -205,7 +218,7 @@ public class PublicacaoController implements IHeaderController {
 	@Restricted
 	@Path("/publicacao/apagarpdf/{id}")
 	public void apaga_pdf(Long id){
-		business.removerPdf(id);
+		business.deletePdf(id);
 		result.redirectTo(PublicacaoController.class).visualiza(id);
 	}
 
@@ -261,7 +274,7 @@ public class PublicacaoController implements IHeaderController {
 		Publicacao publicacao = dao.getPublicacao(id);
 		if (publicacao != null){
 			dao.delete(publicacao);
-			business.removerPdf(id);
+			business.deletePdf(id);
 		}
 		result.redirectTo(PublicacaoController.class).index();
 	}
