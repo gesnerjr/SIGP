@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.username">USERNAME</property>
+		<property name="hibernate.connection.password">PASSWORD</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/DATABASE?autoReconnect=true</property>
+        <property name="hibernate.connection.autoReconnect">true</property>
+		<property name="hibernate.connection.autoReconnectForPools">true</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="show_sql">true</property>
+	
+		<!--connection pool--> 
+		<property name="hibernate.dbcp.maxActive">10</property> 
+		<property name="hibernate.dbcp.whenExhaustedAction">1</property> 
+		<property name="hibernate.dbcp.maxWait">20000</property> 
+		<property name="hibernate.dbcp.maxIdle">10</property> 
+		
+		<!-- prepared statement cache--> 
+		<property name="hibernate.dbcp.ps.maxActive">10</property> 
+		<property name="hibernate.dbcp.ps.whenExhaustedAction">1</property> 
+		<property name="hibernate.dbcp.ps.maxWait">20000</property> 
+		<property name="hibernate.dbcp.ps.maxIdle">10</property> 
+		
+		<!-- optional query to validate pooled connections:--> 
+		<property name="hibernate.dbcp.validationQuery">select 1</property> 
+		<property name="hibernate.dbcp.testOnBorrow">true</property> 
+		<property name="hibernate.dbcp.testOnReturn">true</property>
+		
+		<mapping class="sigp.src.component.Grupo" />
+        <mapping class="sigp.src.component.Publicacao" />
+        <mapping class="sigp.src.component.LinhaPesquisa" />
+        <mapping class="sigp.src.component.Disciplina" />
+        <mapping class="sigp.src.component.Projeto" />
+        <mapping class="sigp.src.component.Software" />
+        <mapping class="sigp.src.component.Contribuinte" />
+        <mapping class="sigp.src.component.Filiacao" />
+        <mapping class="sigp.src.component.RelacaoPesquisa" />
+        <mapping class="sigp.src.component.Usuario" />
+        <mapping class="sigp.src.component.Country" />
+        <mapping class="sigp.src.component.Language" />
+	</session-factory>
+</hibernate-configuration>
