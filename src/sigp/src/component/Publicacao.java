@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -45,6 +46,8 @@ public class Publicacao {
 	
 	private String DOI;
 	
+	private Language language;
+	
 
 	private String bibtex;
 	
@@ -65,6 +68,7 @@ public class Publicacao {
 	private String fascicle;
 	private String isbn;
 	private String issn;
+	private Country country;
 	
 	
 	
@@ -271,6 +275,15 @@ public class Publicacao {
 		DOI = dOI;
 	}
 
+	@ManyToOne(cascade = CascadeType.ALL)
+	public Language getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(Language language) {
+		this.language = language;
+	}
+
 	@Lob
 	@Column(name = "PUBLICACAO_PUBLISHER_NAME")
 	public String getPublisherName() {
@@ -362,6 +375,15 @@ public class Publicacao {
 
 	public void setIssn(String issn) {
 		this.issn = issn;
+	}
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 	public Boolean getPresentation() {
